@@ -43,7 +43,7 @@ export function Consultas() {
         aria-hidden
         style={{
           position: 'absolute',
-          right: '-10vw',
+          right: 0,
           top: '50%',
           transform: 'translateY(-50%)',
           width: '50vw',

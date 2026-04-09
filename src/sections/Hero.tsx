@@ -40,7 +40,7 @@ export function Hero() {
       <motion.div
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
-        transition={{ duration: 3, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        transition={{ duration: 4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         style={{
           position: 'absolute',
           right: 0,

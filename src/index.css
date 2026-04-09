@@ -22,6 +22,7 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--cream);
+  overflow-x: hidden;
 }
 
 body {

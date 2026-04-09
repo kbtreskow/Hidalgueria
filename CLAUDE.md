@@ -9,9 +9,9 @@
 ## Arquitectura `src/`
 ```
 src/
-├── assets/             # Imágenes y SVGs
+├── assets/             # SVGs e íconos (importados como módulos)
 ├── components/
-│   ├── ui/             # Atoms: CustomCursor, GrainOverlay, ScrollProgress, SectionLabel
+│   ├── ui/             # Atoms: CustomCursor, GrainOverlay, ScrollProgress, SectionLabel, HamburgerMenu
 │   └── layout/         # Footer
 ├── hooks/              # useScrollProgress, useInView
 ├── sections/           # 7 secciones de la landing
@@ -39,13 +39,17 @@ src/
 | `--gold`       | `#B8955A` | Acento editorial        |
 
 ## Decisiones de diseño
-- **Sin navbar** — navegación exclusivamente por scroll
+- **Sin navbar fija** — navegación principal por scroll; menú hamburguesa (fixed, top-right) como acceso directo a secciones
 - Cursor personalizado (ring dorado + punto interior)
 - Barra de progreso de scroll (1px dorada, fija arriba)
 - Grain overlay sutil para textura editorial
 - Tipografía: Cormorant Garamond (`.editorial`) para headings, Raleway 300 para cuerpo
 - Animaciones: Framer Motion con ease `[0.16, 1, 0.3, 1]` (quintic out)
 - Contacto: solo Instagram y WhatsApp — sin formularios
+
+## Assets estáticos
+- Las imágenes de contenido (proyectos, etc.) van en `public/assets/` y se referencian como strings `/assets/nombre.jpg` — sin imports
+- `src/assets/` se reserva para SVGs e íconos que Vite necesita procesar
 
 ## Comandos
 ```bash

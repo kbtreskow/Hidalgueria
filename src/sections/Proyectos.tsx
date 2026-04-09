@@ -11,6 +11,7 @@ interface Proyecto {
   año: string
   descripcion: string
   palette: string[]
+  imagen?: string // ruta relativa a src/assets/ o URL externa
 }
 
 const proyectos: Proyecto[] = [
@@ -24,6 +25,7 @@ const proyectos: Proyecto[] = [
     descripcion:
       'Intervención total de un penthouse de 380 m². Paleta de mármol travertino, roble natural y lino belga. Una declaración de sobriedad poderosa.',
     palette: ['#C4B49A', '#8B7355', '#F0E8DC'],
+    imagen: '/assets/proyecto-1.jpg',
   },
   {
     id: 'p2',
@@ -35,6 +37,7 @@ const proyectos: Proyecto[] = [
     descripcion:
       'Diseño de suite presidencial para coleccionista de arte contemporáneo. Cada mueble, una pieza única fabricada en taller italiano bajo encargo exclusivo.',
     palette: ['#9B8B75', '#D4C5A9', '#4A4540'],
+    imagen: '/assets/proyecto-2.jpg',
   },
   {
     id: 'p3',
@@ -46,6 +49,7 @@ const proyectos: Proyecto[] = [
     descripcion:
       'Integración del entorno lacustre en cada decisión espacial. Cantera local, terciopelo verde musgo, latón envejecido. La naturaleza como lujo supremo.',
     palette: ['#7A8C7A', '#C4B49A', '#2C3A2C'],
+    imagen: '/assets/proyecto-3.jpg',
   },
 ]
 
@@ -76,12 +80,35 @@ function ProyectoCard({ proyecto, index }: ProyectoCardProps) {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         style={{
           aspectRatio: '4/3',
-          background: `linear-gradient(135deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`,
+          background: proyecto.imagen
+            ? undefined
+            : `linear-gradient(135deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`,
           position: 'relative',
           overflow: 'hidden',
           order: index % 2 === 0 ? 0 : 1,
         }}
       >
+        {/* Imagen del proyecto */}
+        {proyecto.imagen && (
+          <img
+            src={proyecto.imagen}
+            alt={proyecto.nombre}
+            onError={(e) => {
+              const el = e.currentTarget
+              el.style.display = 'none'
+              if (el.parentElement) {
+                el.parentElement.style.background = `linear-gradient(135deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`
+              }
+            }}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+            }}
+          />
+        )}
+
         {/* Paleta de colores flotante */}
         <div
           style={{

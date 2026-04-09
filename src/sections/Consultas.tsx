@@ -12,8 +12,8 @@ const enlaces: EnlaceContacto[] = [
   {
     plataforma: 'Instagram',
     descripcion: 'Galería de proyectos y proceso creativo',
-    href: 'https://instagram.com/hidalgueria',
-    etiqueta: '@hidalgueria',
+    href: 'https://instagram.com/lahidalgueria',
+    etiqueta: '@lahidalgueria/',
   },
   {
     plataforma: 'WhatsApp',
@@ -230,7 +230,7 @@ export function Consultas() {
                     letterSpacing: '0.04em',
                   }}
                 >
-                  Ciudad de México
+                  Santiago
                 </span>
               </div>
               <div>
@@ -255,7 +255,7 @@ export function Consultas() {
                     letterSpacing: '0.04em',
                   }}
                 >
-                  Nacional · Internacional selecto
+                  Nacional  
                 </span>
               </div>
             </div>

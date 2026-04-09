@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
@@ -322,31 +322,61 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
 // ─── Componente principal ────────────────────────────────────────────────────
 export function Proyectos() {
   const [current, setCurrent] = useState(0)
-  const dragStartX = useRef<number | null>(null)
-  const isDragging = useRef(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const dragStart = useRef<{ x: number; y: number } | null>(null)
 
   const prev = () => { if (current > 0) setCurrent(c => c - 1) }
   const next = () => { if (current < TOTAL - 1) setCurrent(c => c + 1) }
 
-  const handlePointerDown = (e: React.PointerEvent) => {
-    dragStartX.current = e.clientX
-    isDragging.current = false
-    e.currentTarget.setPointerCapture(e.pointerId)
-  }
+  // Touch (móvil) — registrado como non-passive para poder llamar preventDefault
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el) return
 
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (dragStartX.current === null) return
-    if (Math.abs(e.clientX - dragStartX.current) > 5) isDragging.current = true
-  }
+    const onTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0]
+      dragStart.current = { x: t.clientX, y: t.clientY }
+    }
 
-  const handlePointerUp = (e: React.PointerEvent) => {
-    if (dragStartX.current === null) return
-    const delta = dragStartX.current - e.clientX
+    const onTouchMove = (e: TouchEvent) => {
+      if (!dragStart.current) return
+      const dx = Math.abs(e.touches[0].clientX - dragStart.current.x)
+      const dy = Math.abs(e.touches[0].clientY - dragStart.current.y)
+      if (dx > dy) e.preventDefault() // bloquea scroll de página en swipe horizontal
+    }
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (!dragStart.current) return
+      const delta = dragStart.current.x - e.changedTouches[0].clientX
+      if (Math.abs(delta) > 30) {
+        if (delta > 0) next()
+        else prev()
+      }
+      dragStart.current = null
+    }
+
+    el.addEventListener('touchstart', onTouchStart, { passive: true })
+    el.addEventListener('touchmove', onTouchMove, { passive: false })
+    el.addEventListener('touchend', onTouchEnd, { passive: true })
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove', onTouchMove)
+      el.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [current]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Mouse drag (escritorio)
+  const mouseStartX = useRef<number | null>(null)
+
+  const handleMouseDown = (e: React.MouseEvent) => { mouseStartX.current = e.clientX }
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (mouseStartX.current === null) return
+    const delta = mouseStartX.current - e.clientX
     if (Math.abs(delta) > 30) {
       if (delta > 0) next()
       else prev()
     }
-    dragStartX.current = null
+    mouseStartX.current = null
   }
 
   return (
@@ -410,10 +440,10 @@ export function Proyectos() {
 
       {/* Carousel — full-bleed con peek lateral */}
       <div
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerLeave={() => { dragStartX.current = null }}
+        ref={carouselRef}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={() => { mouseStartX.current = null }}
         style={{
           position: 'relative',
           width: '100%',
@@ -421,7 +451,6 @@ export function Proyectos() {
           overflow: 'hidden',
           cursor: 'grab',
           userSelect: 'none',
-          touchAction: 'pan-y',
         }}
       >
         {/* Track con todas las tarjetas */}

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@200;300;400&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --cream:    #F5F0E8;
+  --sand:     #E8DFD0;
+  --dune:     #D4C5A9;
+  --ash:      #9B9591;
+  --graphite: #4A4540;
+  --obsidian: #1C1A17;
+  --gold:     #B8955A;
+  --gold-light: #D4B07A;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--cream);
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: var(--graphite);
+  background-color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--cream);
+}
+
+/* Scrollbar refinado */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dune);
+  border-radius: 2px;
+}
+
+/* Tipografía editorial */
+.editorial {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Línea decorativa */
+.rule-gold {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* Cursor personalizado */
+html, body {
+  cursor: none;
+}

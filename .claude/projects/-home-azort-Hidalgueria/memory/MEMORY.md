@@ -1,0 +1,1 @@
+- [Project: Hidalguería Landing](project_hidalgueria.md) — React+TS landing de alta costura, 7 secciones, sin navbar, scroll-puro

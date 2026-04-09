@@ -331,6 +331,7 @@ export function Proyectos() {
   const handlePointerDown = (e: React.PointerEvent) => {
     dragStartX.current = e.clientX
     isDragging.current = false
+    e.currentTarget.setPointerCapture(e.pointerId)
   }
 
   const handlePointerMove = (e: React.PointerEvent) => {
@@ -341,7 +342,7 @@ export function Proyectos() {
   const handlePointerUp = (e: React.PointerEvent) => {
     if (dragStartX.current === null) return
     const delta = dragStartX.current - e.clientX
-    if (Math.abs(delta) > 50) {
+    if (Math.abs(delta) > 30) {
       if (delta > 0) next()
       else prev()
     }
@@ -420,6 +421,7 @@ export function Proyectos() {
           overflow: 'hidden',
           cursor: 'grab',
           userSelect: 'none',
+          touchAction: 'pan-y',
         }}
       >
         {/* Track con todas las tarjetas */}

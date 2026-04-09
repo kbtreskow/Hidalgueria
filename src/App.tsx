@@ -1,6 +1,7 @@
 import { CustomCursor } from './components/ui/CustomCursor'
 import { GrainOverlay } from './components/ui/GrainOverlay'
 import { ScrollProgress } from './components/ui/ScrollProgress'
+import { HamburgerMenu } from './components/ui/HamburgerMenu'
 import { Footer } from './components/layout/Footer'
 import { Hero } from './sections/Hero'
 import { Proyectos } from './sections/Proyectos'
@@ -17,6 +18,7 @@ export default function App() {
       <CustomCursor />
       <GrainOverlay />
       <ScrollProgress />
+      <HamburgerMenu />
 
       {/* Secciones — navegación por scroll puro, sin navbar */}
       <main>

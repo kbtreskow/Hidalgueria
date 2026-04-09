@@ -36,11 +36,11 @@ export function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Fondo: bloque de color arena */}
+      {/* Fondo: bloque derecho — imagen o fallback arena */}
       <motion.div
-        initial={{ scaleY: 0, originY: 1 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        transition={{ duration: 3, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         style={{
           position: 'absolute',
           right: 0,
@@ -49,8 +49,23 @@ export function Hero() {
           width: '42%',
           background: 'var(--sand)',
           zIndex: 0,
+          overflow: 'hidden',
         }}
-      />
+      >
+        <img
+          src="/assets/hero.jpg"
+          alt=""
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
+        />
+      </motion.div>
 
       {/* Línea vertical decorativa */}
       <motion.div

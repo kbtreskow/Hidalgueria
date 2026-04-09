@@ -16,7 +16,7 @@ src/
 ├── hooks/              # useScrollProgress, useInView
 ├── sections/           # 7 secciones de la landing
 │   ├── Hero.tsx        # Entrada cinemática full-screen
-│   ├── Proyectos.tsx   # Portfolio de 3 proyectos
+│   ├── Proyectos.tsx   # Carousel de 16 proyectos con navegación por flechas y peek lateral
 │   ├── Historia.tsx    # Filosofía de la marca (fondo oscuro)
 │   ├── Servicios.tsx   # Grid 2×2 de servicios
 │   ├── Proceso.tsx     # Timeline de 5 etapas (layout sticky)
@@ -37,6 +37,7 @@ src/
 | `--graphite`   | `#4A4540` | Texto cuerpo            |
 | `--obsidian`   | `#1C1A17` | Fondo oscuro / títulos  |
 | `--gold`       | `#B8955A` | Acento editorial        |
+| `--gold-light` | `#D4B07A` | Variante clara del oro  |
 
 ## Decisiones de diseño
 - **Sin navbar fija** — navegación principal por scroll; menú hamburguesa (fixed, top-right) como acceso directo a secciones
@@ -55,5 +56,6 @@ src/
 ```bash
 npm run dev    # Desarrollo local
 npm run build  # Build de producción (dist/)
-npm run lint   # ESLint
+npm run lint    # ESLint
+npm run preview # Preview del build de producción
 ```

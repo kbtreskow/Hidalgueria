@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
@@ -322,9 +322,31 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
 // ─── Componente principal ────────────────────────────────────────────────────
 export function Proyectos() {
   const [current, setCurrent] = useState(0)
+  const dragStartX = useRef<number | null>(null)
+  const isDragging = useRef(false)
 
   const prev = () => { if (current > 0) setCurrent(c => c - 1) }
   const next = () => { if (current < TOTAL - 1) setCurrent(c => c + 1) }
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    dragStartX.current = e.clientX
+    isDragging.current = false
+  }
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (dragStartX.current === null) return
+    if (Math.abs(e.clientX - dragStartX.current) > 5) isDragging.current = true
+  }
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (dragStartX.current === null) return
+    const delta = dragStartX.current - e.clientX
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) next()
+      else prev()
+    }
+    dragStartX.current = null
+  }
 
   return (
     <div style={{ overflow: 'hidden', background: 'var(--cream)' }}>
@@ -387,11 +409,17 @@ export function Proyectos() {
 
       {/* Carousel — full-bleed con peek lateral */}
       <div
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={() => { dragStartX.current = null }}
         style={{
           position: 'relative',
           width: '100%',
           height: 'clamp(480px, 68vh, 780px)',
           overflow: 'hidden',
+          cursor: 'grab',
+          userSelect: 'none',
         }}
       >
         {/* Track con todas las tarjetas */}

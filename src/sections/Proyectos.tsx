@@ -194,123 +194,123 @@ const proyectos: Proyecto[] = [
 ]
 
 // ─── Constantes del carousel ────────────────────────────────────────────────
-const PER_PAGE = 2
-const TOTAL_PAGES = Math.ceil(proyectos.length / PER_PAGE) // 8
+const CARD_W_VW = 58   // ancho de cada tarjeta en vw
+const GAP_VW = 3       // espacio entre tarjetas en vw
+const STEP_VW = CARD_W_VW + GAP_VW  // 61vw por paso
+const OFFSET_VW = (100 - CARD_W_VW) / 2  // 21vw — centra la tarjeta activa
+const TOTAL = proyectos.length
 
 // ─── Variantes de animación ─────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1] as const
 
-
-// ─── Tarjeta individual (orientación vertical para layout 2-col) ─────────────
-function ProyectoCard({ proyecto, delay = 0 }: { proyecto: Proyecto; delay?: number }) {
+// ─── Tarjeta individual — imagen completa + overlay ──────────────────────────
+function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: EASE, delay }}
+      whileHover="hover"
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1.75rem',
+        position: 'relative',
+        width: `${CARD_W_VW}vw`,
+        height: 'clamp(480px, 68vh, 780px)',
+        flexShrink: 0,
+        overflow: 'hidden',
+        borderRadius: '30px',
+        background: `linear-gradient(145deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`,
       }}
     >
-      {/* Imagen */}
-      <motion.div
-        whileHover={{ scale: 1.015 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+      {/* Imagen de fondo */}
+      {proyecto.imagen && (
+        <motion.img
+          src={proyecto.imagen}
+          alt={proyecto.nombre}
+          onError={(e) => { e.currentTarget.style.display = 'none' }}
+          variants={{ hover: { scale: 1.06 } }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover', display: 'block',
+          }}
+        />
+      )}
+
+      {/* Gradiente para legibilidad del texto */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, rgba(10,8,5,0.08) 0%, rgba(10,8,5,0.18) 45%, rgba(10,8,5,0.82) 100%)',
+      }} />
+
+      {/* Número editorial — esquina superior izquierda */}
+      <span
+        className="editorial"
         style={{
-          aspectRatio: '4/3',
-          position: 'relative',
-          overflow: 'hidden',
-          background: `linear-gradient(135deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`,
+          position: 'absolute', top: '1.75rem', left: '2rem',
+          fontSize: 'clamp(3.5rem, 5vw, 5.5rem)', fontWeight: 300,
+          color: 'rgba(255,255,255,0.18)', lineHeight: 1, userSelect: 'none',
         }}
       >
-        {proyecto.imagen && (
-          <img
-            src={proyecto.imagen}
-            alt={proyecto.nombre}
-            onError={(e) => {
-              e.currentTarget.style.display = 'none'
-            }}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
-        )}
+        {proyecto.numero}
+      </span>
 
-        {/* Paleta flotante */}
-        <div style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem', display: 'flex', gap: '0.4rem' }}>
-          {proyecto.palette.map((color, i) => (
-            <div
-              key={i}
-              style={{
-                width: '20px',
-                height: '20px',
-                borderRadius: '50%',
-                background: color,
-                border: '1px solid rgba(255,255,255,0.35)',
-              }}
-            />
-          ))}
+      {/* Paleta de colores — esquina superior derecha */}
+      <div style={{ position: 'absolute', top: '2rem', right: '2rem', display: 'flex', gap: '0.45rem' }}>
+        {proyecto.palette.map((color, i) => (
+          <div
+            key={i}
+            style={{
+              width: '16px', height: '16px', borderRadius: '50%',
+              background: color, border: '1.5px solid rgba(255,255,255,0.35)',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Contenido — zona inferior */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        padding: 'clamp(1.75rem, 3vw, 2.5rem) clamp(1.75rem, 3vw, 2.5rem) clamp(2rem, 3.5vw, 3rem)',
+        display: 'flex', flexDirection: 'column', gap: '0.65rem',
+      }}>
+        {/* Label tipo · año */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ width: '2rem', height: '1px', background: 'var(--gold)' }} />
+          <span style={{
+            fontFamily: 'Raleway, sans-serif', fontWeight: 300,
+            fontSize: '0.6rem', letterSpacing: '0.28em',
+            color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase',
+          }}>
+            {proyecto.tipo} · {proyecto.año}
+          </span>
         </div>
 
-        {/* Número editorial */}
-        <span
-          className="editorial"
-          style={{
-            position: 'absolute',
-            top: '1rem',
-            left: '1.25rem',
-            fontSize: '4.5rem',
-            fontWeight: 300,
-            color: 'rgba(255,255,255,0.18)',
-            lineHeight: 1,
-            userSelect: 'none',
-          }}
-        >
-          {proyecto.numero}
-        </span>
-      </motion.div>
-
-      {/* Info */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <SectionLabel text={`${proyecto.tipo} · ${proyecto.año}`} />
-
+        {/* Nombre */}
         <h3
           className="editorial"
           style={{
-            fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)',
-            fontWeight: 300,
-            color: 'var(--obsidian)',
-            lineHeight: 1.05,
-            letterSpacing: '-0.02em',
+            fontSize: 'clamp(1.6rem, 2.6vw, 2.8rem)', fontWeight: 300,
+            color: '#fff', lineHeight: 1.05, letterSpacing: '-0.02em',
           }}
         >
           {proyecto.nombre}
         </h3>
 
-        <p
-          style={{
-            fontSize: '0.8125rem',
-            lineHeight: 1.9,
-            color: 'var(--ash)',
-            fontWeight: 300,
-            letterSpacing: '0.03em',
-            maxWidth: '42ch',
-          }}
-        >
+        {/* Descripción */}
+        <p style={{
+          fontSize: '0.8rem', lineHeight: 1.85,
+          color: 'rgba(255,255,255,0.68)',
+          fontWeight: 300, letterSpacing: '0.025em',
+          maxWidth: '48ch',
+        }}>
           {proyecto.descripcion}
         </p>
 
+        {/* Ubicación */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '0.25rem' }}>
-          <div className="rule-gold" />
-          <span
-            style={{
-              fontSize: '0.625rem',
-              letterSpacing: '0.2em',
-              color: 'var(--ash)',
-              textTransform: 'uppercase',
-              fontWeight: 300,
-            }}
-          >
+          <div style={{ width: '1.5rem', height: '1px', background: 'rgba(255,255,255,0.3)' }} />
+          <span style={{
+            fontSize: '0.6rem', letterSpacing: '0.22em',
+            color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', fontWeight: 300,
+          }}>
             {proyecto.ubicacion}
           </span>
         </div>
@@ -321,124 +321,117 @@ function ProyectoCard({ proyecto, delay = 0 }: { proyecto: Proyecto; delay?: num
 
 // ─── Componente principal ────────────────────────────────────────────────────
 export function Proyectos() {
-  const [page, setPage] = useState(0)
+  const [current, setCurrent] = useState(0)
 
-  const prev = () => { if (page > 0) setPage(p => p - 1) }
-  const next = () => { if (page < TOTAL_PAGES - 1) setPage(p => p + 1) }
+  const prev = () => { if (current > 0) setCurrent(c => c - 1) }
+  const next = () => { if (current < TOTAL - 1) setCurrent(c => c + 1) }
 
   return (
     <div style={{ overflow: 'hidden', background: 'var(--cream)' }}>
-    <section
-      id="proyectos"
-      style={{
-        paddingTop: 'clamp(6rem, 12vw, 14rem)',
-        paddingBottom: 'clamp(3rem, 5vw, 5rem)',
-        maxWidth: '1440px',
-        margin: '0 auto',
-        width: '100%',
-      }}
-    >
-      {/* Header */}
-      <div
+      <section
+        id="proyectos"
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          marginBottom: '5rem',
-          flexWrap: 'wrap',
-          gap: '2rem',
-          paddingLeft: 'clamp(2rem, 7vw, 9rem)',
-          paddingRight: 'clamp(2rem, 7vw, 9rem)',
+          paddingTop: 'clamp(6rem, 12vw, 14rem)',
+          maxWidth: '1440px',
+          margin: '0 auto',
+          width: '100%',
         }}
       >
-        <div>
-          <SectionLabel text="Portfolio selecto" />
-          <h2
-            className="editorial"
-            style={{
-              fontSize: 'clamp(2.5rem, 5vw, 5rem)',
-              fontWeight: 300,
-              color: 'var(--obsidian)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.02em',
-              marginTop: '1.5rem',
-            }}
-          >
-            Proyectos
-            <br />
-            <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>destacados</em>
-          </h2>
-        </div>
-
-        <p
+        {/* Header */}
+        <div
           style={{
-            fontSize: '0.8125rem',
-            color: 'var(--ash)',
-            lineHeight: 1.8,
-            maxWidth: '28ch',
-            textAlign: 'right',
-            fontWeight: 300,
-            letterSpacing: '0.03em',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            marginBottom: '5rem',
+            flexWrap: 'wrap',
+            gap: '2rem',
+            paddingLeft: 'clamp(2rem, 7vw, 9rem)',
+            paddingRight: 'clamp(2rem, 7vw, 9rem)',
           }}
         >
-          Cada espacio, una conversación íntima entre el cliente y su entorno ideal.
-        </p>
-      </div>
+          <div>
+            <SectionLabel text="Portfolio selecto" />
+            <h2
+              className="editorial"
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 5rem)',
+                fontWeight: 300,
+                color: 'var(--obsidian)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.02em',
+                marginTop: '1.5rem',
+              }}
+            >
+              Proyectos
+              <br />
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>destacados</em>
+            </h2>
+          </div>
 
-      {/* Carousel — breakout full-bleed para que el clip sea el borde del viewport */}
+          <p
+            style={{
+              fontSize: '0.8125rem',
+              color: 'var(--ash)',
+              lineHeight: 1.8,
+              maxWidth: '28ch',
+              textAlign: 'right',
+              fontWeight: 300,
+              letterSpacing: '0.03em',
+            }}
+          >
+            Cada espacio, una conversación íntima entre el cliente y su entorno ideal.
+          </p>
+        </div>
+      </section>
+
+      {/* Carousel — full-bleed con peek lateral */}
       <div
         style={{
           position: 'relative',
-          left: '50%',
-          width: '100vw',
-          transform: 'translateX(-50%)',
-          minHeight: 'clamp(560px, 65vh, 780px)',
+          width: '100%',
+          height: 'clamp(480px, 68vh, 780px)',
+          overflow: 'hidden',
         }}
       >
-        {Array.from({ length: TOTAL_PAGES }).map((_, pageIndex) => {
-          const pageItems = proyectos.slice(pageIndex * PER_PAGE, pageIndex * PER_PAGE + PER_PAGE)
-          const xOffset = `${(pageIndex - page) * 100}vw`
+        {/* Track con todas las tarjetas */}
+        {proyectos.map((p, i) => {
+          const xVw = (i - current) * STEP_VW + OFFSET_VW
           return (
             <motion.div
-              key={pageIndex}
-              animate={{ x: xOffset }}
+              key={p.id}
+              animate={{ x: `${xVw}vw`, scale: i === current ? 1 : 0.88 }}
               transition={{ duration: 0.72, ease: EASE }}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}
+              style={{ position: 'absolute', top: 0, left: 0 }}
             >
-              <div style={{
-                maxWidth: '1440px',
-                margin: '0 auto',
-                paddingLeft: 'clamp(2rem, 7vw, 9rem)',
-                paddingRight: 'clamp(2rem, 7vw, 9rem)',
-                boxSizing: 'border-box',
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 'clamp(2rem, 5vw, 5rem)',
-              }}>
-                {pageItems.map((p) => (
-                  <ProyectoCard key={p.id} proyecto={p} />
-                ))}
-              </div>
+              <ProyectoCard proyecto={p} />
             </motion.div>
           )
         })}
+      </div>
 
-        {/* Flecha izquierda — sobre el carousel, borde izquierdo */}
+      {/* Navegación */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '3rem',
+          paddingTop: '2.5rem',
+          paddingBottom: 'clamp(3rem, 5vw, 5rem)',
+          background: 'var(--cream)',
+        }}
+      >
+        {/* Flecha anterior */}
         <button
           onClick={prev}
-          disabled={page === 0}
+          disabled={current === 0}
           style={{
-            position: 'absolute',
-            left: 'clamp(1rem, 2.5vw, 2.5rem)',
-            top: 'clamp(120px, 12vw, 190px)',
-            transform: 'translateY(-50%)',
-            background: 'none',
-            border: 'none',
-            cursor: page === 0 ? 'default' : 'pointer',
-            opacity: page === 0 ? 0.2 : 1,
+            background: 'none', border: 'none',
+            cursor: current === 0 ? 'default' : 'pointer',
+            opacity: current === 0 ? 0.2 : 1,
             padding: '0.5rem',
             transition: 'opacity 0.3s ease',
-            zIndex: 10,
           }}
         >
           <svg width="44" height="10" viewBox="0 0 44 10" fill="none">
@@ -447,22 +440,32 @@ export function Proyectos() {
           </svg>
         </button>
 
-        {/* Flecha derecha — sobre el carousel, borde derecho */}
+        {/* Contador editorial */}
+        <span
+          className="editorial"
+          style={{
+            fontSize: '0.8rem',
+            letterSpacing: '0.2em',
+            color: 'var(--ash)',
+            fontWeight: 300,
+            userSelect: 'none',
+            minWidth: '5ch',
+            textAlign: 'center',
+          }}
+        >
+          {String(current + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
+        </span>
+
+        {/* Flecha siguiente */}
         <button
           onClick={next}
-          disabled={page === TOTAL_PAGES - 1}
+          disabled={current === TOTAL - 1}
           style={{
-            position: 'absolute',
-            right: 'clamp(1rem, 2.5vw, 2.5rem)',
-            top: 'clamp(120px, 12vw, 190px)',
-            transform: 'translateY(-50%)',
-            background: 'none',
-            border: 'none',
-            cursor: page === TOTAL_PAGES - 1 ? 'default' : 'pointer',
-            opacity: page === TOTAL_PAGES - 1 ? 0.2 : 1,
+            background: 'none', border: 'none',
+            cursor: current === TOTAL - 1 ? 'default' : 'pointer',
+            opacity: current === TOTAL - 1 ? 0.2 : 1,
             padding: '0.5rem',
             transition: 'opacity 0.3s ease',
-            zIndex: 10,
           }}
         >
           <svg width="44" height="10" viewBox="0 0 44 10" fill="none">
@@ -471,24 +474,6 @@ export function Proyectos() {
           </svg>
         </button>
       </div>
-
-    </section>
-
-      {/* Barra de progreso — full-bleed, hermana directa del wrapper para evitar clipping */}
-      <div style={{ height: '2px', background: 'var(--sand)', position: 'relative', overflow: 'hidden' }}>
-        <motion.div
-          initial={false}
-          animate={{ scaleX: (page + 1) / TOTAL_PAGES }}
-          transition={{ duration: 0.6, ease: EASE }}
-          style={{
-            position: 'absolute', top: 0, left: 0,
-            height: '100%', width: '100%',
-            background: 'var(--gold)',
-            transformOrigin: 'left center',
-          }}
-        />
-      </div>
     </div>
   )
 }
-

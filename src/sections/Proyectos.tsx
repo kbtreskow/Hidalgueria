@@ -402,7 +402,7 @@ export function Proyectos() {
   }
 
   return (
-    <div style={{ overflow: 'hidden', background: 'var(--cream)' }}>
+    <div style={{ overflowX: 'clip', background: 'var(--cream)' }}>
       <section
         id="proyectos"
         style={{
@@ -473,8 +473,8 @@ export function Proyectos() {
           style={{
             position: 'relative',
             width: '100%',
-            height: 'clamp(480px, 68vh, 780px)',
-            overflow: 'hidden',
+            height: 'calc(clamp(480px, 68vh, 780px) + 5rem)',
+            overflowX: 'clip',
             cursor: 'grab',
             userSelect: 'none',
           }}

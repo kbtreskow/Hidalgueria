@@ -408,13 +408,11 @@ export function Proyectos() {
       minHeight: '100svh',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
-      padding: 'clamp(2rem, 5vh, 4rem) 0',
     }}>
       <section
         id="proyectos"
         style={{
-          padding: '0 clamp(2rem, 7vw, 9rem)',
+          padding: 'clamp(4rem, 8vh, 7rem) clamp(2rem, 7vw, 9rem) 0',
         }}
       >
         <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
@@ -471,7 +469,7 @@ export function Proyectos() {
         ref={entranceRef}
         animate={{ x: isInView ? '0%' : '65%', opacity: isInView ? 1 : 0 }}
         transition={{ duration: 1.1, ease: EASE }}
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', paddingBottom: 'clamp(3rem, 6vh, 5rem)' }}
       >
         {/* Carousel — full-bleed con peek lateral */}
         <div

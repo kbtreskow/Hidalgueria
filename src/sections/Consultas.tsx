@@ -56,9 +56,8 @@ export function Consultas() {
 
       <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
         <div
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
             gap: 'clamp(3rem, 8vw, 10rem)',
             alignItems: 'center',
           }}

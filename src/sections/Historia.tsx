@@ -88,19 +88,18 @@ export function Historia() {
         }}
       >
         <div
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
             gap: 'clamp(3rem, 8vw, 10rem)',
             alignItems: 'start',
           }}
         >
           {/* Columna izquierda: historia */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 3.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <SectionLabel text="Nuestra historia" />
 
@@ -145,10 +144,10 @@ export function Historia() {
             {principios.map((p, i) => (
               <motion.div
                 key={p.numero}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: i * 0.15 }}
+                transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.25 }}
                 style={{
                   display: 'flex',
                   gap: '2rem',

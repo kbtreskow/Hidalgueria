@@ -58,15 +58,14 @@ export function Proceso() {
     >
       <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
         <div
+          className="grid grid-cols-1 md:grid-cols-[1fr_2fr]"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 2fr',
             gap: 'clamp(3rem, 8vw, 10rem)',
             alignItems: 'start',
           }}
         >
           {/* Columna izquierda sticky */}
-          <div style={{ position: 'sticky', top: '6rem' }}>
+          <div className="md:sticky" style={{ top: '6rem' }}>
             <SectionLabel text="Cómo trabajamos" />
             <h2
               className="editorial"
@@ -107,9 +106,8 @@ export function Proceso() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
+                className="grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_1fr]"
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: '5rem 1fr',
                   gap: '2.5rem',
                   paddingBottom: '3.5rem',
                   borderBottom: i < etapas.length - 1 ? '1px solid var(--sand)' : 'none',

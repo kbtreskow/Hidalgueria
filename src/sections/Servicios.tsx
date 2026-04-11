@@ -78,9 +78,8 @@ export function Servicios() {
 
         {/* Grid de servicios */}
         <div
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '2px',
           }}
         >
@@ -100,8 +99,6 @@ export function Servicios() {
                 gap: '1.5rem',
                 cursor: 'none',
                 transition: 'background 0.4s ease',
-                borderBottom: i < 2 ? '2px solid var(--sand)' : 'none',
-                borderRight: i % 2 === 0 ? '2px solid var(--sand)' : 'none',
               }}
             >
               <div

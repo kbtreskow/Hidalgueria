@@ -42,9 +42,40 @@ export function Servicios() {
       style={{
         background: 'var(--sand)',
         padding: 'clamp(6rem, 12vw, 14rem) clamp(2rem, 7vw, 9rem)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
+      {/* Video de fondo — fallback al color var(--sand) si no carga */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+        }}
+      >
+        <source src="/assets/servicios-bg.mp4" type="video/mp4" />
+        <source src="/assets/servicios-bg.webm" type="video/webm" />
+      </video>
+      {/* Overlay para mantener legibilidad sobre el video */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(232, 223, 208, 0.72)',
+          zIndex: 1,
+        }}
+      />
+      <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
         {/* Header */}
         <div
           style={{

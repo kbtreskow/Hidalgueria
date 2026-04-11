@@ -53,8 +53,9 @@ export function Hero() {
         }}
       >
         <img
-          src="/assets/hero.jpg"
+          src="/assets/hero.webp"
           alt=""
+          fetchPriority="high"
           onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
           style={{
             position: 'absolute',

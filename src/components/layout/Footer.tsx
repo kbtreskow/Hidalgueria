@@ -44,7 +44,7 @@ export function Footer() {
             textTransform: 'uppercase',
           }}
         >
-          © {año} · Diseño interior de alta decoración · CDMX
+          © {año} · Diseño interior de alta decoración ·
         </span>
       </div>
     </footer>

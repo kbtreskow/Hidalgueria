@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { SectionLabel } from '../components/ui/SectionLabel'
 
 interface Proyecto {
@@ -24,7 +24,7 @@ const proyectos: Proyecto[] = [
     año: '2024',
     descripcion: 'Intervención total de un penthouse de 380 m². Paleta de mármol travertino, roble natural y lino belga.',
     palette: ['#C4B49A', '#8B7355', '#F0E8DC'],
-    imagen: '/assets/proyecto-1.jpg',
+    imagen: '/assets/proyecto-1.webp',
   },
   {
     id: 'p02',
@@ -35,7 +35,7 @@ const proyectos: Proyecto[] = [
     año: '2024',
     descripcion: 'Suite presidencial para coleccionista de arte contemporáneo. Cada mueble, una pieza única fabricada en taller italiano.',
     palette: ['#9B8B75', '#D4C5A9', '#4A4540'],
-    imagen: '/assets/proyecto-2.jpg',
+    imagen: '/assets/proyecto-2.webp',
   },
   {
     id: 'p03',
@@ -46,7 +46,7 @@ const proyectos: Proyecto[] = [
     año: '2023',
     descripcion: 'Integración del entorno lacustre en cada decisión espacial. Cantera local, terciopelo verde musgo, latón envejecido.',
     palette: ['#7A8C7A', '#C4B49A', '#2C3A2C'],
-    imagen: '/assets/proyecto-3.jpg',
+    imagen: '/assets/proyecto-3.webp',
   },
   {
     id: 'p04',
@@ -57,7 +57,7 @@ const proyectos: Proyecto[] = [
     año: '2023',
     descripcion: 'Reconversión de ático industrial en vivienda de lujo. Hormigón pulido, vidrio emplomado y acero negro mate.',
     palette: ['#5C5550', '#A09590', '#E8E0D8'],
-    imagen: '/assets/proyecto-4.jpg',
+    imagen: '/assets/proyecto-4.webp',
   },
   {
     id: 'p05',
@@ -68,7 +68,7 @@ const proyectos: Proyecto[] = [
     año: '2023',
     descripcion: 'Espacio expositivo para obra escultórica. Muros de estuco veneciano y pisos de piedra Andesita negra pulida.',
     palette: ['#3A3530', '#8B7355', '#D4C5A9'],
-    imagen: '/assets/proyecto-5.jpg',
+    imagen: '/assets/proyecto-5.webp',
   },
   {
     id: 'p06',
@@ -79,7 +79,7 @@ const proyectos: Proyecto[] = [
     año: '2022',
     descripcion: 'Casa de campo con vocación contemplativa. Paleta de adobe, lámina de cobre y telas de algodón natural sin tintar.',
     palette: ['#A0785A', '#D4B896', '#6B4A30'],
-    imagen: '/assets/proyecto-6.jpg',
+    imagen: '/assets/proyecto-6.webp',
   },
   {
     id: 'p07',
@@ -90,7 +90,7 @@ const proyectos: Proyecto[] = [
     año: '2022',
     descripcion: 'Rediseño integral de planta ejecutiva. El silencio del mármol negro Marquina contrasta con la calidez del cuero curtido a mano.',
     palette: ['#1C1A17', '#B8955A', '#F5F0E8'],
-    imagen: '/assets/proyecto-7.jpg',
+    imagen: '/assets/proyecto-7.webp',
   },
   {
     id: 'p08',
@@ -101,7 +101,7 @@ const proyectos: Proyecto[] = [
     año: '2022',
     descripcion: 'Recinto de descanso sensorial. Piedra volcánica, madera de teca y textiles de seda thai en tonos tierra.',
     palette: ['#8A7060', '#C4A882', '#4A3828'],
-    imagen: '/assets/proyecto-8.jpg',
+    imagen: '/assets/proyecto-8.webp',
   },
   {
     id: 'p09',
@@ -112,7 +112,7 @@ const proyectos: Proyecto[] = [
     año: '2021',
     descripcion: 'Residencia familiar de 600 m². Diálogo entre modernidad y artesanía oaxaqueña. Barro negro, plata y lino crudo.',
     palette: ['#6B6458', '#C8B8A2', '#2C2820'],
-    imagen: '/assets/proyecto-9.jpg',
+    imagen: '/assets/proyecto-9.webp',
   },
   {
     id: 'p10',
@@ -123,7 +123,7 @@ const proyectos: Proyecto[] = [
     año: '2021',
     descripcion: 'Flagship store para marca de joyería de autor. Retroiluminación de alabastro y vitrinas suspendidas en latón dorado.',
     palette: ['#B8955A', '#F5F0E8', '#9B9591'],
-    imagen: '/assets/proyecto-10.jpg',
+    imagen: '/assets/proyecto-10.webp',
   },
   {
     id: 'p11',
@@ -134,7 +134,7 @@ const proyectos: Proyecto[] = [
     año: '2021',
     descripcion: 'Transformación de bodega en vivienda artista. Estructura metálica expuesta, vidrio de colores y hormigón a la vista.',
     palette: ['#5A6070', '#A8B0B8', '#2A3040'],
-    imagen: '/assets/proyecto-11.jpg',
+    imagen: '/assets/proyecto-11.webp',
   },
   {
     id: 'p12',
@@ -145,7 +145,7 @@ const proyectos: Proyecto[] = [
     año: '2020',
     descripcion: 'Restauración de hacienda del siglo XVIII. Recuperación de fresco original, cantera rosa y talavera poblana de época.',
     palette: ['#C08060', '#E8D0B0', '#783820'],
-    imagen: '/assets/proyecto-12.jpg',
+    imagen: '/assets/proyecto-12.webp',
   },
   {
     id: 'p13',
@@ -156,7 +156,7 @@ const proyectos: Proyecto[] = [
     año: '2020',
     descripcion: 'Suite de gran lujo en hotel icónico. Reinterpretación contemporánea del muralismo mexicano en clave abstracta.',
     palette: ['#8B4040', '#D4A878', '#F0E8E0'],
-    imagen: '/assets/proyecto-13.jpg',
+    imagen: '/assets/proyecto-13.webp',
   },
   {
     id: 'p14',
@@ -167,7 +167,7 @@ const proyectos: Proyecto[] = [
     año: '2020',
     descripcion: 'Casa frente al Pacífico. Cada material elegido para su resistencia a la brisa y su belleza sin esfuerzo aparente.',
     palette: ['#4A7080', '#A8C8D0', '#F0EAE0'],
-    imagen: '/assets/proyecto-14.jpg',
+    imagen: '/assets/proyecto-14.webp',
   },
   {
     id: 'p15',
@@ -178,7 +178,7 @@ const proyectos: Proyecto[] = [
     año: '2019',
     descripcion: 'Estudio de arquitectura y diseño. Espacio de trabajo que es en sí mismo una declaración de intenciones estéticas.',
     palette: ['#788060', '#C0C8A8', '#404828'],
-    imagen: '/assets/proyecto-15.jpg',
+    imagen: '/assets/proyecto-15.webp',
   },
   {
     id: 'p16',
@@ -189,12 +189,12 @@ const proyectos: Proyecto[] = [
     año: '2019',
     descripcion: 'Vivienda de 90 m² donde la restricción espacial se convierte en virtud. Economía de medios, riqueza de atmósfera.',
     palette: ['#9B9591', '#E8DFD0', '#1C1A17'],
-    imagen: '/assets/proyecto-16.jpg',
+    imagen: '/assets/proyecto-16.webp',
   },
 ]
 
 // ─── Constantes del carousel ────────────────────────────────────────────────
-const CARD_W_VW = 80   // ancho de cada tarjeta en vw
+const CARD_W_VW = 58   // ancho de cada tarjeta en vw
 const GAP_VW = 3       // espacio entre tarjetas en vw
 const STEP_VW = CARD_W_VW + GAP_VW  // 61vw por paso
 const OFFSET_VW = (100 - CARD_W_VW) / 2  // 21vw — centra la tarjeta activa
@@ -204,7 +204,7 @@ const TOTAL = proyectos.length
 const EASE = [0.16, 1, 0.3, 1] as const
 
 // ─── Tarjeta individual — imagen completa + overlay ──────────────────────────
-function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
+function ProyectoCard({ proyecto, index }: { proyecto: Proyecto; index: number }) {
   return (
     <motion.article
       whileHover="hover"
@@ -223,6 +223,7 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
         <motion.img
           src={proyecto.imagen}
           alt={proyecto.nombre}
+          loading={index === 0 ? 'eager' : 'lazy'}
           onError={(e) => { e.currentTarget.style.display = 'none' }}
           variants={{ hover: { scale: 1.06 } }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -324,6 +325,8 @@ export function Proyectos() {
   const [current, setCurrent] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
   const dragStart = useRef<{ x: number; y: number } | null>(null)
+  const entranceRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(entranceRef, { once: true, margin: '0px 0px -15% 0px' })
 
   const prev = () => { if (current > 0) setCurrent(c => c - 1) }
   const next = () => { if (current < TOTAL - 1) setCurrent(c => c + 1) }
@@ -438,49 +441,56 @@ export function Proyectos() {
         </div>
       </section>
 
-      {/* Carousel — full-bleed con peek lateral */}
-      <div
-        ref={carouselRef}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={() => { mouseStartX.current = null }}
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: 'clamp(480px, 68vh, 780px)',
-          overflow: 'hidden',
-          cursor: 'grab',
-          userSelect: 'none',
-        }}
+      {/* Carousel + Navegación — entrada desde la derecha */}
+      <motion.div
+        ref={entranceRef}
+        animate={{ x: isInView ? '0%' : '65%', opacity: isInView ? 1 : 0 }}
+        transition={{ duration: 1.1, ease: EASE }}
+        style={{ willChange: 'transform' }}
       >
-        {/* Track con todas las tarjetas */}
-        {proyectos.map((p, i) => {
-          const xVw = (i - current) * STEP_VW + OFFSET_VW
-          return (
-            <motion.div
-              key={p.id}
-              animate={{ x: `${xVw}vw`, scale: i === current ? 1 : 0.88 }}
-              transition={{ duration: 0.72, ease: EASE }}
-              style={{ position: 'absolute', top: 0, left: 0 }}
-            >
-              <ProyectoCard proyecto={p} />
-            </motion.div>
-          )
-        })}
-      </div>
+        {/* Carousel — full-bleed con peek lateral */}
+        <div
+          ref={carouselRef}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={() => { mouseStartX.current = null }}
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: 'clamp(480px, 68vh, 780px)',
+            overflow: 'hidden',
+            cursor: 'grab',
+            userSelect: 'none',
+          }}
+        >
+          {/* Track con todas las tarjetas */}
+          {proyectos.map((p, i) => {
+            const xVw = (i - current) * STEP_VW + OFFSET_VW
+            return (
+              <motion.div
+                key={p.id}
+                animate={{ x: `${xVw}vw`, scale: i === current ? 1 : 0.88 }}
+                transition={{ duration: 0.72, ease: EASE }}
+                style={{ position: 'absolute', top: 0, left: 0 }}
+              >
+                <ProyectoCard proyecto={p} index={i} />
+              </motion.div>
+            )
+          })}
+        </div>
 
-      {/* Navegación */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '3rem',
-          paddingTop: '2.5rem',
-          paddingBottom: 'clamp(3rem, 5vw, 5rem)',
-          background: 'var(--cream)',
-        }}
-      >
+        {/* Navegación */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '3rem',
+            paddingTop: '2.5rem',
+            paddingBottom: 'clamp(3rem, 5vw, 5rem)',
+            background: 'var(--cream)',
+          }}
+        >
         {/* Flecha anterior */}
         <button
           onClick={prev}
@@ -532,7 +542,8 @@ export function Proyectos() {
             <polyline points="34,1 43,5 34,9" fill="none" stroke="var(--graphite)" strokeWidth="0.75" />
           </svg>
         </button>
-      </div>
+        </div>
+      </motion.div>
     </div>
   )
 }

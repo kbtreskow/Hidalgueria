@@ -71,7 +71,7 @@ export function Servicios() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'rgba(232, 223, 208, 0.72)',
+          background: 'rgba(212, 197, 169, 0.58)',
           zIndex: 1,
         }}
       />
@@ -111,25 +111,30 @@ export function Servicios() {
         <div
           className="grid grid-cols-1 md:grid-cols-2"
           style={{
-            gap: '2px',
+            gap: 'clamp(1.25rem, 2.5vw, 2rem)',
           }}
         >
           {servicios.map((s, i) => (
             <motion.div
               key={s.numero}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.8, delay: (i % 2) * 0.1 }}
-              whileHover={{ background: 'var(--cream)' }}
+              transition={{ duration: 0.7, delay: (i % 2) * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ filter: 'drop-shadow(0 20px 48px rgba(28,26,23,0.22))', background: 'rgba(245, 240, 232, 0.62)' }}
               style={{
-                background: 'var(--cream)',
-                padding: '3rem',
+                background: 'rgba(245, 240, 232, 0.42)',
+                backdropFilter: 'blur(22px) saturate(1.15)',
+                WebkitBackdropFilter: 'blur(22px) saturate(1.15)',
+                border: 'none',
+                borderRadius: '16px',
+                filter: 'drop-shadow(0 8px 32px rgba(28,26,23,0.13))',
+                padding: 'clamp(2rem, 3.5vw, 3rem)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1.5rem',
                 cursor: 'none',
-                transition: 'background 0.4s ease',
+                transition: 'filter 0.4s ease, background 0.4s ease',
               }}
             >
               <div
@@ -170,7 +175,7 @@ export function Servicios() {
                 style={{
                   fontSize: '0.8125rem',
                   lineHeight: 1.9,
-                  color: 'var(--ash)',
+                  color: 'var(--graphite)',
                   fontWeight: 300,
                   letterSpacing: '0.02em',
                   flexGrow: 1,
@@ -186,7 +191,7 @@ export function Servicios() {
                   flexDirection: 'column',
                   gap: '0.5rem',
                   paddingTop: '1rem',
-                  borderTop: '1px solid var(--sand)',
+                  borderTop: '1px solid rgba(184, 149, 90, 0.35)',
                 }}
               >
                 {s.detalle.map((d) => (

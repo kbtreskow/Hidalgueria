@@ -16,9 +16,9 @@ src/
 ├── hooks/              # useScrollProgress, useInView
 ├── sections/           # 7 secciones de la landing
 │   ├── Hero.tsx        # Entrada cinemática full-screen
-│   ├── Proyectos.tsx   # Carousel de 16 proyectos con navegación por flechas y peek lateral
+│   ├── Proyectos.tsx   # Carousel de 16 proyectos — 70vw móvil / 58vw desktop, hook useCardWidth()
 │   ├── Historia.tsx    # Filosofía de la marca (fondo oscuro)
-│   ├── Servicios.tsx   # Grid 2×2 de servicios
+│   ├── Servicios.tsx   # Grid 2×2 de servicios — tarjetas glassmorphism (backdrop-filter blur) sobre video de fondo
 │   ├── Proceso.tsx     # Timeline de 5 etapas (layout sticky)
 │   ├── Testimonios.tsx # Carrusel de citas
 │   └── Consultas.tsx   # Contacto vía Instagram y WhatsApp
@@ -46,10 +46,21 @@ src/
 - Grain overlay sutil para textura editorial
 - Tipografía: Cormorant Garamond (`.editorial`) para headings, Raleway 300 para cuerpo
 - Animaciones: Framer Motion con ease `[0.16, 1, 0.3, 1]` (quintic out)
+- Carousel Proyectos: ancho de tarjeta reactivo vía `useCardWidth()` + `matchMedia` — 70vw en móvil, 58vw en ≥1024px; `STEP_VW` y `OFFSET_VW` se recalculan en componente, no como constantes globales
+- `overflow-x: clip` en `html` y `body` (no `hidden`) — `hidden` crea scroll container y rompe `position: sticky`
 - Contacto: solo Instagram y WhatsApp — sin formularios
+- Tarjetas Servicios: glassmorphism — `backdrop-filter: blur(22px)`, fondo `rgba(245,240,232,0.42)`, sin bordes, `borderRadius: 16px`; texto descripción en `var(--graphite)` (no `--ash`, contraste insuficiente sobre glass claro); separador en `rgba(184,149,90,0.35)` (dorado sutil); no usar `inset` box-shadow junto con borders (crea artefacto de línea blanca)
+- **Patrón de alineación de secciones** — el padding horizontal va en el `<section>` (o contenedor raíz), y el `maxWidth: 1440px` + `margin: 0 auto` va en un `<div>` interior separado. NO juntar ambos en el mismo elemento: eso desalinea los títulos en pantallas anchas (>1440px) porque el centering se suma al padding en lugar de estar dentro de él. Patrón correcto:
+  ```
+  <section style={{ padding: '... clamp(2rem, 7vw, 9rem)' }}>
+    <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
+      {/* contenido */}
+    </div>
+  </section>
+  ```
 
 ## Assets estáticos
-- Las imágenes de contenido (proyectos, etc.) van en `public/assets/` y se referencian como strings `/assets/nombre.jpg` — sin imports
+- Las imágenes de contenido (proyectos, etc.) van en `public/assets/` y se referencian como strings `/assets/nombre.webp` — sin imports
 - `src/assets/` se reserva para SVGs e íconos que Vite necesita procesar
 
 ## Comandos

@@ -96,85 +96,84 @@ export function Hero() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: 'clamp(3rem, 8vw, 8rem) clamp(2rem, 7vw, 9rem)',
-          maxWidth: '1440px',
-          width: '100%',
-          margin: '0 auto',
           minHeight: '100svh',
         }}
       >
-        <motion.div variants={fadeIn} style={{ marginBottom: '4rem' }}>
-          <SectionLabel text="Diseño interior · Alta decoración" />
-        </motion.div>
+        <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
+          <motion.div variants={fadeIn} style={{ marginBottom: '4rem' }}>
+            <SectionLabel text="Diseño interior · Alta decoración" />
+          </motion.div>
 
-        <motion.div variants={fadeUp}>
-          <h1
-            className="editorial"
-            style={{
-              fontSize: 'clamp(4rem, 10vw, 10.5rem)',
-              fontWeight: 300,
-              lineHeight: 0.9,
-              color: 'var(--obsidian)',
-              letterSpacing: '-0.02em',
-              maxWidth: '14ch',
-            }}
-          >
-            El arte
-            <br />
-            <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>de vivir</em>
-            <br />
-            con belleza
-          </h1>
-        </motion.div>
+          <motion.div variants={fadeUp}>
+            <h1
+              className="editorial"
+              style={{
+                fontSize: 'clamp(4rem, 10vw, 10.5rem)',
+                fontWeight: 300,
+                lineHeight: 0.9,
+                color: 'var(--obsidian)',
+                letterSpacing: '-0.02em',
+                maxWidth: '14ch',
+              }}
+            >
+              El arte
+              <br />
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>de vivir</em>
+              <br />
+              con belleza
+            </h1>
+          </motion.div>
 
-        <motion.div
-          variants={fadeUp}
-          style={{
-            marginTop: '3rem',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '3rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          <p
+          <motion.div
+            variants={fadeUp}
             style={{
-              fontFamily: 'Raleway, sans-serif',
-              fontWeight: 300,
-              fontSize: '0.9rem',
-              lineHeight: 1.9,
-              color: 'var(--ash)',
-              maxWidth: '36ch',
-              letterSpacing: '0.04em',
-            }}
-          >
-            Creamos espacios que susurran quiénes somos.<br />
-            Cada pieza, cada textura, cada luz —<br />
-            una elección deliberada de alma.
-          </p>
-
-          <motion.a
-            href="#proyectos"
-            whileHover={{ letterSpacing: '0.35em', color: 'var(--gold)' }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            style={{
-              fontFamily: 'Raleway, sans-serif',
-              fontWeight: 300,
-              fontSize: '0.6875rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'var(--graphite)',
-              textDecoration: 'none',
+              marginTop: '3rem',
               display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              alignSelf: 'flex-end',
-              paddingBottom: '0.25rem',
-              borderBottom: '1px solid var(--dune)',
+              alignItems: 'flex-start',
+              gap: '3rem',
+              flexWrap: 'wrap',
             }}
           >
-            Descubrir
-          </motion.a>
-        </motion.div>
+            <p
+              style={{
+                fontFamily: 'Raleway, sans-serif',
+                fontWeight: 300,
+                fontSize: '0.9rem',
+                lineHeight: 1.9,
+                color: 'var(--ash)',
+                maxWidth: '36ch',
+                letterSpacing: '0.04em',
+              }}
+            >
+              Creamos espacios que susurran quiénes somos.<br />
+              Cada pieza, cada textura, cada luz —<br />
+              una elección deliberada de alma.
+            </p>
+
+            <motion.a
+              href="#proyectos"
+              whileHover={{ letterSpacing: '0.35em', color: 'var(--gold)' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              style={{
+                fontFamily: 'Raleway, sans-serif',
+                fontWeight: 300,
+                fontSize: '0.6875rem',
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: 'var(--graphite)',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                alignSelf: 'flex-end',
+                paddingBottom: '0.25rem',
+                borderBottom: '1px solid var(--dune)',
+              }}
+            >
+              Descubrir
+            </motion.a>
+          </motion.div>
+        </div>
 
         {/* Número editorial */}
         <motion.span

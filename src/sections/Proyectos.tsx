@@ -194,23 +194,38 @@ const proyectos: Proyecto[] = [
 ]
 
 // ─── Constantes del carousel ────────────────────────────────────────────────
-const CARD_W_VW = 70   // ancho de cada tarjeta en vw58
-const GAP_VW = 3       // espacio entre tarjetas en vw
-const STEP_VW = CARD_W_VW + GAP_VW  // 61vw por paso
-const OFFSET_VW = (100 - CARD_W_VW) / 2  // 21vw — centra la tarjeta activa
+const CARD_W_MOBILE = 70   // vw en móvil
+const CARD_W_DESKTOP = 58  // vw en monitor (≥1024px)
+const GAP_VW = 3            // espacio entre tarjetas en vw
 const TOTAL = proyectos.length
+
+function useCardWidth() {
+  const [cardW, setCardW] = useState(
+    typeof window !== 'undefined' && window.innerWidth >= 1024
+      ? CARD_W_DESKTOP
+      : CARD_W_MOBILE
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const handler = (e: MediaQueryListEvent) =>
+      setCardW(e.matches ? CARD_W_DESKTOP : CARD_W_MOBILE)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return cardW
+}
 
 // ─── Variantes de animación ─────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1] as const
 
 // ─── Tarjeta individual — imagen completa + overlay ──────────────────────────
-function ProyectoCard({ proyecto, index }: { proyecto: Proyecto; index: number }) {
+function ProyectoCard({ proyecto, index, cardW }: { proyecto: Proyecto; index: number; cardW: number }) {
   return (
     <motion.article
       whileHover="hover"
       style={{
         position: 'relative',
-        width: `${CARD_W_VW}vw`,
+        width: `${cardW}vw`,
         height: 'clamp(480px, 68vh, 780px)',
         flexShrink: 0,
         overflow: 'hidden',
@@ -323,6 +338,9 @@ function ProyectoCard({ proyecto, index }: { proyecto: Proyecto; index: number }
 // ─── Componente principal ────────────────────────────────────────────────────
 export function Proyectos() {
   const [current, setCurrent] = useState(0)
+  const cardW = useCardWidth()
+  const stepVw = cardW + GAP_VW
+  const offsetVw = (100 - cardW) / 2
   const carouselRef = useRef<HTMLDivElement>(null)
   const dragStart = useRef<{ x: number; y: number } | null>(null)
   const entranceRef = useRef<HTMLDivElement>(null)
@@ -387,12 +405,10 @@ export function Proyectos() {
       <section
         id="proyectos"
         style={{
-          paddingTop: 'clamp(6rem, 12vw, 14rem)',
-          maxWidth: '1440px',
-          margin: '0 auto',
-          width: '100%',
+          padding: 'clamp(6rem, 12vw, 14rem) clamp(2rem, 7vw, 9rem) 0',
         }}
       >
+        <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
         {/* Header */}
         <div
           style={{
@@ -402,8 +418,6 @@ export function Proyectos() {
             marginBottom: '5rem',
             flexWrap: 'wrap',
             gap: '2rem',
-            paddingLeft: 'clamp(2rem, 7vw, 9rem)',
-            paddingRight: 'clamp(2rem, 7vw, 9rem)',
           }}
         >
           <div>
@@ -439,6 +453,7 @@ export function Proyectos() {
             Cada espacio, una conversación íntima entre el cliente y su entorno ideal.
           </p>
         </div>
+        </div>
       </section>
 
       {/* Carousel + Navegación — entrada desde la derecha */}
@@ -465,7 +480,7 @@ export function Proyectos() {
         >
           {/* Track con todas las tarjetas */}
           {proyectos.map((p, i) => {
-            const xVw = (i - current) * STEP_VW + OFFSET_VW
+            const xVw = (i - current) * stepVw + offsetVw
             return (
               <motion.div
                 key={p.id}
@@ -473,7 +488,7 @@ export function Proyectos() {
                 transition={{ duration: 0.72, ease: EASE }}
                 style={{ position: 'absolute', top: 0, left: 0 }}
               >
-                <ProyectoCard proyecto={p} index={i} />
+                <ProyectoCard proyecto={p} index={i} cardW={cardW} />
               </motion.div>
             )
           })}

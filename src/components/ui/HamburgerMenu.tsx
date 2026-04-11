@@ -64,6 +64,7 @@ export function HamburgerMenu() {
           alignItems: 'flex-end',
           gap: '5px',
           cursor: 'none',
+          mixBlendMode: 'difference',
         }}
       >
         <motion.span
@@ -72,7 +73,7 @@ export function HamburgerMenu() {
           style={{
             display: 'block',
             height: '1px',
-            background: open ? 'var(--cream)' : 'var(--obsidian)',
+            background: '#fff',
             transformOrigin: 'center',
           }}
         />
@@ -83,7 +84,7 @@ export function HamburgerMenu() {
             display: 'block',
             height: '1px',
             width: '16px',
-            background: open ? 'var(--cream)' : 'var(--obsidian)',
+            background: '#fff',
           }}
         />
         <motion.span
@@ -92,7 +93,7 @@ export function HamburgerMenu() {
           style={{
             display: 'block',
             height: '1px',
-            background: open ? 'var(--cream)' : 'var(--obsidian)',
+            background: '#fff',
             transformOrigin: 'center',
           }}
         />

@@ -226,7 +226,7 @@ function ProyectoCard({ proyecto, index, cardW }: { proyecto: Proyecto; index: n
       style={{
         position: 'relative',
         width: `${cardW}vw`,
-        height: 'clamp(480px, 68vh, 780px)',
+        height: 'clamp(340px, 56vh, 660px)',
         flexShrink: 0,
         overflow: 'hidden',
         //borderRadius: '30px',
@@ -402,11 +402,19 @@ export function Proyectos() {
   }
 
   return (
-    <div style={{ overflowX: 'clip', background: 'var(--cream)' }}>
+    <div style={{
+      overflowX: 'clip',
+      background: 'var(--cream)',
+      minHeight: '100svh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      padding: 'clamp(2rem, 5vh, 4rem) 0',
+    }}>
       <section
         id="proyectos"
         style={{
-          padding: 'clamp(6rem, 12vw, 14rem) clamp(2rem, 7vw, 9rem) 0',
+          padding: '0 clamp(2rem, 7vw, 9rem)',
         }}
       >
         <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
@@ -416,9 +424,9 @@ export function Proyectos() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
-            marginBottom: '5rem',
+            marginBottom: 'clamp(1.5rem, 3vh, 3rem)',
             flexWrap: 'wrap',
-            gap: '2rem',
+            gap: '1.5rem',
           }}
         >
           <div>
@@ -431,7 +439,7 @@ export function Proyectos() {
                 color: 'var(--obsidian)',
                 lineHeight: 1.05,
                 letterSpacing: '-0.02em',
-                marginTop: '1.5rem',
+                marginTop: '1rem',
               }}
             >
               Proyectos
@@ -441,6 +449,7 @@ export function Proyectos() {
           </div>
 
           <p
+            className="hidden md:block"
             style={{
               fontSize: '0.8125rem',
               color: 'var(--ash)',
@@ -462,7 +471,7 @@ export function Proyectos() {
         ref={entranceRef}
         animate={{ x: isInView ? '0%' : '65%', opacity: isInView ? 1 : 0 }}
         transition={{ duration: 1.1, ease: EASE }}
-        style={{ willChange: 'transform', paddingBottom: 'clamp(6rem, 12vw, 14rem)' }}
+        style={{ willChange: 'transform' }}
       >
         {/* Carousel — full-bleed con peek lateral */}
         <div
@@ -473,7 +482,7 @@ export function Proyectos() {
           style={{
             position: 'relative',
             width: '100%',
-            height: 'calc(clamp(480px, 68vh, 780px) + 5rem)',
+            height: 'calc(clamp(340px, 56vh, 660px) + 5rem)',
             overflowX: 'clip',
             cursor: 'grab',
             userSelect: 'none',

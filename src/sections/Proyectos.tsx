@@ -194,7 +194,7 @@ const proyectos: Proyecto[] = [
 ]
 
 // ─── Constantes del carousel ────────────────────────────────────────────────
-const CARD_W_VW = 58   // ancho de cada tarjeta en vw
+const CARD_W_VW = 70   // ancho de cada tarjeta en vw58
 const GAP_VW = 3       // espacio entre tarjetas en vw
 const STEP_VW = CARD_W_VW + GAP_VW  // 61vw por paso
 const OFFSET_VW = (100 - CARD_W_VW) / 2  // 21vw — centra la tarjeta activa

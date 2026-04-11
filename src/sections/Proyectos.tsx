@@ -230,6 +230,7 @@ function ProyectoCard({ proyecto, index, cardW }: { proyecto: Proyecto; index: n
         flexShrink: 0,
         overflow: 'hidden',
         //borderRadius: '30px',
+        boxShadow: '0 12px 48px rgba(0,0,0,0.22)',
         background: `linear-gradient(145deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`,
       }}
     >
@@ -461,7 +462,7 @@ export function Proyectos() {
         ref={entranceRef}
         animate={{ x: isInView ? '0%' : '65%', opacity: isInView ? 1 : 0 }}
         transition={{ duration: 1.1, ease: EASE }}
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', paddingBottom: 'clamp(6rem, 12vw, 14rem)' }}
       >
         {/* Carousel — full-bleed con peek lateral */}
         <div
@@ -494,70 +495,6 @@ export function Proyectos() {
           })}
         </div>
 
-        {/* Navegación */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '3rem',
-            paddingTop: '2.5rem',
-            paddingBottom: 'clamp(3rem, 5vw, 5rem)',
-            background: 'var(--cream)',
-          }}
-        >
-        {/* Flecha anterior */}
-        <button
-          onClick={prev}
-          disabled={current === 0}
-          style={{
-            background: 'none', border: 'none',
-            cursor: current === 0 ? 'default' : 'pointer',
-            opacity: current === 0 ? 0.2 : 1,
-            padding: '0.5rem',
-            transition: 'opacity 0.3s ease',
-          }}
-        >
-          <svg width="44" height="10" viewBox="0 0 44 10" fill="none">
-            <line x1="44" y1="5" x2="2" y2="5" stroke="var(--graphite)" strokeWidth="0.75" />
-            <polyline points="10,1 1,5 10,9" fill="none" stroke="var(--graphite)" strokeWidth="0.75" />
-          </svg>
-        </button>
-
-        {/* Contador editorial */}
-        <span
-          className="editorial"
-          style={{
-            fontSize: '0.8rem',
-            letterSpacing: '0.2em',
-            color: 'var(--ash)',
-            fontWeight: 300,
-            userSelect: 'none',
-            minWidth: '5ch',
-            textAlign: 'center',
-          }}
-        >
-          {String(current + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
-        </span>
-
-        {/* Flecha siguiente */}
-        <button
-          onClick={next}
-          disabled={current === TOTAL - 1}
-          style={{
-            background: 'none', border: 'none',
-            cursor: current === TOTAL - 1 ? 'default' : 'pointer',
-            opacity: current === TOTAL - 1 ? 0.2 : 1,
-            padding: '0.5rem',
-            transition: 'opacity 0.3s ease',
-          }}
-        >
-          <svg width="44" height="10" viewBox="0 0 44 10" fill="none">
-            <line x1="0" y1="5" x2="42" y2="5" stroke="var(--graphite)" strokeWidth="0.75" />
-            <polyline points="34,1 43,5 34,9" fill="none" stroke="var(--graphite)" strokeWidth="0.75" />
-          </svg>
-        </button>
-        </div>
       </motion.div>
     </div>
   )

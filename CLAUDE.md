@@ -47,6 +47,8 @@ src/
 - Tipografía: Cormorant Garamond (`.editorial`) para headings, Raleway 300 para cuerpo
 - Animaciones: Framer Motion con ease `[0.16, 1, 0.3, 1]` (quintic out)
 - Carousel Proyectos: ancho de tarjeta reactivo vía `useCardWidth()` + `matchMedia` — 70vw en móvil, 58vw en ≥1024px; `STEP_VW` y `OFFSET_VW` se recalculan en componente, no como constantes globales
+- **Navegación del carousel** — sin botones de flechas ni contador; la navegación es exclusivamente swipe táctil y drag de mouse. No re-agregar controles UI.
+- **Estructura de Proyectos.tsx** — el `<section>` contiene solo el header (título + descripción); el carousel vive en un `motion.div` hermano fuera del `<section>`. El padding vertical inferior va en ese `motion.div` (`paddingBottom: 'clamp(6rem, 12vw, 14rem)'`), no en la sección.
 - `overflow-x: clip` en `html` y `body` (no `hidden`) — `hidden` crea scroll container y rompe `position: sticky`
 - Contacto: solo Instagram y WhatsApp — sin formularios
 - Tarjetas Servicios: glassmorphism — `backdrop-filter: blur(22px)`, fondo `rgba(245,240,232,0.42)`, sin bordes, `borderRadius: 16px`; texto descripción en `var(--graphite)` (no `--ash`, contraste insuficiente sobre glass claro); separador en `rgba(184,149,90,0.35)` (dorado sutil); no usar `inset` box-shadow junto con borders (crea artefacto de línea blanca)

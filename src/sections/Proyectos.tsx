@@ -229,7 +229,7 @@ function ProyectoCard({ proyecto, index, cardW }: { proyecto: Proyecto; index: n
         height: 'clamp(480px, 68vh, 780px)',
         flexShrink: 0,
         overflow: 'hidden',
-        borderRadius: '30px',
+        //borderRadius: '30px',
         background: `linear-gradient(145deg, ${proyecto.palette[0]}, ${proyecto.palette[1]})`,
       }}
     >

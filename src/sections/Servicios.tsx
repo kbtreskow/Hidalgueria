@@ -65,13 +65,13 @@ export function Servicios() {
         <source src="/assets/servicios-bg.mp4" type="video/mp4" />
         <source src="/assets/servicios-bg.webm" type="video/webm" />
       </video>
-      {/* Overlay para mantener legibilidad sobre el video */}
+      {/* Overlay cálido ámbar — video visible con tono dorado, contraste con Historia oscura */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'rgba(212, 197, 169, 0.58)',
+          background: 'rgba(184, 145, 80, 0.28)',
           zIndex: 1,
         }}
       />
@@ -121,49 +121,65 @@ export function Servicios() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: (i % 2) * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ filter: 'drop-shadow(0 20px 48px rgba(28,26,23,0.22))', background: 'rgba(245, 240, 232, 0.62)' }}
+              whileHover={{
+                background: 'rgba(20, 18, 15, 0.82)',
+                boxShadow: '0 0 0 1px rgba(184, 149, 90, 0.5), 0 20px 60px rgba(0,0,0,0.55)',
+                transition: { duration: 0.35, ease: 'easeOut' },
+              }}
               style={{
-                background: 'rgba(245, 240, 232, 0.42)',
-                backdropFilter: 'blur(22px) saturate(1.15)',
-                WebkitBackdropFilter: 'blur(22px) saturate(1.15)',
-                border: 'none',
-                borderRadius: '16px',
-                filter: 'drop-shadow(0 8px 32px rgba(28,26,23,0.13))',
+                background: 'rgba(20, 18, 15, 0.65)',
+                backdropFilter: 'blur(10px) saturate(1.05)',
+                WebkitBackdropFilter: 'blur(10px) saturate(1.05)',
+                boxShadow: '0 0 0 1px rgba(184, 149, 90, 0.18), 0 8px 40px rgba(0,0,0,0.35)',
+                borderRadius: '2px',
                 padding: 'clamp(2rem, 3.5vw, 3rem)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1.5rem',
                 cursor: 'none',
-                transition: 'filter 0.4s ease, background 0.4s ease',
+                position: 'relative',
+                overflow: 'hidden',
               }}
             >
-              <div
+              {/* Número fantasma decorativo — editorial */}
+              <span
+                aria-hidden="true"
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
+                  position: 'absolute',
+                  top: 'clamp(0.75rem, 1.5vw, 1.25rem)',
+                  right: 'clamp(1.25rem, 2.5vw, 2rem)',
+                  fontFamily: 'Cormorant Garamond, serif',
+                  fontStyle: 'italic',
+                  fontSize: 'clamp(4.5rem, 9vw, 8rem)',
+                  lineHeight: 1,
+                  color: 'rgba(184, 149, 90, 0.08)',
+                  pointerEvents: 'none',
+                  userSelect: 'none',
+                  letterSpacing: '-0.03em',
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: 'Raleway, sans-serif',
-                    fontWeight: 300,
-                    fontSize: '0.5625rem',
-                    letterSpacing: '0.25em',
-                    color: 'var(--gold)',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  {s.numero}
-                </span>
-              </div>
+                {s.numero}
+              </span>
+
+              <span
+                style={{
+                  fontFamily: 'Raleway, sans-serif',
+                  fontWeight: 300,
+                  fontSize: '0.5625rem',
+                  letterSpacing: '0.25em',
+                  color: 'var(--gold)',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {s.numero}
+              </span>
 
               <h3
                 className="editorial"
                 style={{
                   fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
                   fontWeight: 300,
-                  color: 'var(--obsidian)',
+                  color: 'var(--cream)',
                   lineHeight: 1.1,
                   letterSpacing: '-0.01em',
                 }}
@@ -175,7 +191,7 @@ export function Servicios() {
                 style={{
                   fontSize: '0.8125rem',
                   lineHeight: 1.9,
-                  color: 'var(--graphite)',
+                  color: 'rgba(245, 240, 232, 0.68)',
                   fontWeight: 300,
                   letterSpacing: '0.02em',
                   flexGrow: 1,
@@ -191,7 +207,7 @@ export function Servicios() {
                   flexDirection: 'column',
                   gap: '0.5rem',
                   paddingTop: '1rem',
-                  borderTop: '1px solid rgba(184, 149, 90, 0.35)',
+                  borderTop: '1px solid rgba(184, 149, 90, 0.25)',
                 }}
               >
                 {s.detalle.map((d) => (
@@ -200,7 +216,7 @@ export function Servicios() {
                     style={{
                       fontSize: '0.6875rem',
                       letterSpacing: '0.12em',
-                      color: 'var(--graphite)',
+                      color: 'rgba(245, 240, 232, 0.55)',
                       textTransform: 'uppercase',
                       fontWeight: 300,
                       display: 'flex',

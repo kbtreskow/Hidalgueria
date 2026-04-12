@@ -73,3 +73,9 @@ body {
 html, body {
   cursor: none;
 }
+
+/* Carousel de productos — barra de progreso */
+@keyframes carouselFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}

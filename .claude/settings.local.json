@@ -6,7 +6,8 @@
       "Bash(rm -rf /home/azort/Hidalgueria/hidalgueria-temp)",
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
-      "Bash(echo \"EXIT:$?\")"
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(npm run:*)"
     ]
   }
 }

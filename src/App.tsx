@@ -8,9 +8,9 @@ import { Proyectos } from './sections/Proyectos'
 import { Historia } from './sections/Historia'
 import { Servicios } from './sections/Servicios'
 import { Proceso } from './sections/Proceso'
-import { Testimonios } from './sections/Testimonios'
+import { Productos } from './sections/Productos'
 import { Consultas } from './sections/Consultas'
-
+  
 export default function App() {
   return (
     <>
@@ -27,7 +27,7 @@ export default function App() {
         <Historia />
         <Servicios />
         <Proceso />
-        <Testimonios />
+        <Productos />
         <Consultas />
       </main>
 

@@ -20,7 +20,7 @@ src/
 │   ├── Historia.tsx    # Filosofía de la marca (fondo oscuro)
 │   ├── Servicios.tsx   # Grid 2×2 de servicios — tarjetas glassmorphism (backdrop-filter blur) sobre video de fondo
 │   ├── Proceso.tsx     # Timeline de 5 etapas (layout sticky)
-│   ├── Testimonios.tsx # Carrusel de citas
+│   ├── Productos.tsx   # Colección "Materia Prima" — 5 filas alternadas imagen/texto (fondo obsidian)
 │   └── Consultas.tsx   # Contacto vía Instagram y WhatsApp
 ├── App.tsx             # Orquestador — sin navbar, scroll puro
 ├── main.tsx

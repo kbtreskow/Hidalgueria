@@ -428,7 +428,7 @@ export function Proyectos() {
           }}
         >
           <div>
-            <SectionLabel text="Portfolio selecto" />
+            <SectionLabel text="Portafolio selecto" />
             <h2
               className="editorial"
               style={{
@@ -440,14 +440,13 @@ export function Proyectos() {
                 marginTop: '1rem',
               }}
             >
-              Proyectos
+              Espacios que
               <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>destacados</em>
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>hablan de quien los <strong style={{ fontWeight: 700 }}>habita</strong></em>
             </h2>
           </div>
 
           <p
-            className="hidden md:block"
             style={{
               fontSize: '0.8125rem',
               color: 'var(--ash)',
@@ -458,7 +457,7 @@ export function Proyectos() {
               letterSpacing: '0.03em',
             }}
           >
-            Cada espacio, una conversación íntima entre el cliente y su entorno ideal.
+            Una selección de composiciones donde textiles, proporciones y detalles encuentran su equilibrio.
           </p>
         </div>
         </div>

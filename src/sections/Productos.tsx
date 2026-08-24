@@ -472,9 +472,9 @@ export function Productos() {
                 letterSpacing: '-0.035em',
               }}
             >
-              Materia
+              Una paleta
               <br />
-              <em style={{ color: 'var(--gold)' }}>Prima</em>
+              <em style={{ color: 'var(--gold)' }}>para combinar</em>
             </h2>
           </motion.div>
         </div>

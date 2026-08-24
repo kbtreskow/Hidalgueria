@@ -11,21 +11,21 @@ interface Principio {
 const principios: Principio[] = [
   {
     numero: 'I',
-    titulo: 'Escucha profunda',
+    titulo: 'La materia primero',
     texto:
-      'Antes de trazar una línea, escuchamos. La vida que se vivirá en ese espacio define cada elección. El diseñador es intérprete, no autor.',
+      'Elegimos linos, tusores y fibras naturales por su textura, su caída y la belleza que adquieren con el tiempo.',
   },
   {
     numero: 'II',
-    titulo: 'Materiales honestos',
+    titulo: 'El valor del oficio',
     texto:
-      'Privilegiamos lo que el tiempo embellece: piedra, madera, lino, latón. Nada que pretenda ser lo que no es. La autenticidad como principio constructivo.',
+      'Cada pieza pasa por manos expertas. Cortamos, combinamos y confeccionamos cuidando proporciones y terminaciones.',
   },
   {
     numero: 'III',
-    titulo: 'Silencio visual',
+    titulo: 'Elegancia natural',
     texto:
-      'El espacio negativo es también diseño. Sabemos cuándo detenernos. La austeridad elegida es la forma más difícil de lujo.',
+      'Creemos en una belleza serena. Capas, texturas y tonos que conviven en armonía, sin excesos.',
   },
 ]
 
@@ -115,7 +115,7 @@ export function Historia() {
                 marginBottom: '2.5rem',
               }}
             >
-              Diseñar
+              Hacer
               <br />
               es un acto
               <br />
@@ -132,10 +132,11 @@ export function Historia() {
                 letterSpacing: '0.03em',
               }}
             >
-              Fundada en 2018 por una diseñadora formada en Milán y un arquitecto de raíces mexica, Hidalguería nació de una convicción: que el diseño de interiores verdadero no decora —
-              <em style={{ fontStyle: 'italic', color: 'rgba(184,149,90,0.8)' }}> transforma</em>.
+              La Hidalguería nace del amor por los textiles, las fibras naturales y el valor de aquello que ha sido hecho con las manos.
               <br /><br />
-              Durante seis años hemos creado espacios para quienes entienden que su entorno es una extensión de su identidad. No fabricamos tendencias. Cultivamos atmósferas duraderas.
+              Entendemos la cama como un lugar íntimo: una composición de texturas, volúmenes y proporciones capaz de transformar la forma en que se siente un dormitorio.
+              <br /><br />
+              No buscamos la perfección de lo industrial. Buscamos carácter, equilibrio y la autenticidad de una pieza bien hecha.
             </p>
           </motion.div>
 

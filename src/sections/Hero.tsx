@@ -101,7 +101,7 @@ export function Hero() {
       >
         <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
           <motion.div variants={fadeIn} style={{ marginBottom: '4rem' }}>
-            <SectionLabel text="Diseño interior · Alta decoración" />
+            <SectionLabel text="Lino · fibras naturales · confección artesanal" />
           </motion.div>
 
           <motion.div variants={fadeUp}>
@@ -118,9 +118,9 @@ export function Hero() {
             >
               El arte
               <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>de vivir</em>
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>de vestir</em>
               <br />
-              con belleza
+              la cama
             </h1>
           </motion.div>
 
@@ -145,9 +145,8 @@ export function Hero() {
                 letterSpacing: '0.04em',
               }}
             >
-              Creamos espacios que susurran quiénes somos.<br />
-              Cada pieza, cada textura, cada luz —<br />
-              una elección deliberada de alma.
+              Creamos textiles que hablan de una forma de vivir.<br /><br />
+              Fibras nobles, oficio y detalles hechos a mano — piezas únicas concebidas para perdurar.
             </p>
 
             <motion.a
@@ -170,7 +169,7 @@ export function Hero() {
                 borderBottom: '1px solid var(--dune)',
               }}
             >
-              Descubrir
+              Descubre nuestras camas
             </motion.a>
           </motion.div>
         </div>

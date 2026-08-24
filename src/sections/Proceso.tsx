@@ -6,44 +6,38 @@ interface Etapa {
   fase: string
   titulo: string
   descripcion: string
-  duracion: string
 }
 
 const etapas: Etapa[] = [
   {
     numero: '01',
-    fase: 'Encuentro',
-    titulo: 'Primera conversación',
-    descripcion: 'Una sesión de escucha sin libreto. Queremos saber cómo vive, qué siente al entrar a su hogar, qué le falta, qué le sobra.',
-    duracion: '1–2 sesiones',
+    fase: '',
+    titulo: 'Conversamos',
+    descripcion: 'Conocemos el espacio, tus referencias y lo que quieres transformar.',
   },
   {
     numero: '02',
-    fase: 'Visión',
-    titulo: 'Concepto & moodboard',
-    descripcion: 'Traducimos la conversación en un mundo visual: paletas, referencias, materiales y la narrativa que guiará cada decisión.',
-    duracion: '2–3 semanas',
+    fase: '',
+    titulo: 'Elegimos las telas',
+    descripcion: 'Tocamos, comparamos y combinamos tonos, gramajes y texturas.',
   },
   {
     numero: '03',
-    fase: 'Precisión',
-    titulo: 'Planos & especificaciones',
-    descripcion: 'Cada milímetro documentado. Planos técnicos, renders fotorrealistas, fichas de materiales y cronograma de ejecución.',
-    duracion: '4–6 semanas',
+    fase: '',
+    titulo: 'Diseñamos',
+    descripcion: 'Definimos medidas, capas, caídas, formatos y terminaciones.',
   },
   {
     numero: '04',
-    fase: 'Creación',
-    titulo: 'Ejecución & seguimiento',
-    descripcion: 'Dirigimos cada etapa de la obra con presencia real. Coordinamos artesanos, fabricantes y proveedores bajo nuestra supervisión directa.',
-    duracion: 'Variable por proyecto',
+    fase: '',
+    titulo: 'Confeccionamos',
+    descripcion: 'La propuesta pasa al taller, donde cada elemento se confecciona y termina cuidadosamente.',
   },
   {
     numero: '05',
-    fase: 'Entrega',
-    titulo: 'La gran revelación',
-    descripcion: 'El momento en que el espacio cobra vida. Entregamos cada detalle en su lugar, listos para habitarse desde el primer día.',
-    duracion: '—',
+    fase: '',
+    titulo: 'Entregamos',
+    descripcion: 'La idea inicial se vuelve tangible: una cama pensada específicamente para ese dormitorio.',
   },
 ]
 
@@ -79,9 +73,9 @@ export function Proceso() {
                 marginBottom: '2rem',
               }}
             >
-              Un proceso
+              De una idea
               <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>íntimo</em>
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>a tu cama</em>
             </h2>
             <p
               style={{
@@ -93,7 +87,7 @@ export function Proceso() {
                 letterSpacing: '0.03em',
               }}
             >
-              Trabajamos con un número limitado de proyectos al año para garantizar una atención genuina en cada uno.
+              Cada proyecto parte de algo distinto: un dormitorio, una necesidad, una referencia o simplemente una sensación que queremos conseguir.
             </p>
           </div>
 
@@ -167,37 +161,10 @@ export function Proceso() {
                       fontWeight: 300,
                       letterSpacing: '0.02em',
                       maxWidth: '48ch',
-                      marginBottom: '1rem',
                     }}
                   >
                     {etapa.descripcion}
                   </p>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.75rem',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: '20px',
-                        height: '1px',
-                        background: 'var(--dune)',
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontSize: '0.625rem',
-                        letterSpacing: '0.2em',
-                        color: 'var(--ash)',
-                        textTransform: 'uppercase',
-                        fontWeight: 300,
-                      }}
-                    >
-                      {etapa.duracion}
-                    </span>
-                  </div>
                 </div>
               </motion.div>
             ))}

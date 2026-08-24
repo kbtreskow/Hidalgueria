@@ -11,27 +11,27 @@ interface Servicio {
 const servicios: Servicio[] = [
   {
     numero: '001',
-    nombre: 'Diseño Integral',
-    descripcion: 'De la idea a la llave. Tomamos el proyecto desde el primer trazo hasta la instalación de la última pieza.',
-    detalle: ['Concepto & moodboard', 'Planos y renders', 'Dirección de obra', 'Coordinación de artesanos'],
+    nombre: 'Ropa de cama',
+    descripcion: 'Capas que aportan profundidad, movimiento y una sensación de descanso.',
+    detalle: ['Fundas', 'Sábanas', 'Mantas', 'Cubrecamas'],
   },
   {
     numero: '002',
-    nombre: 'Curaduría de Arte y Objetos',
-    descripcion: 'Seleccionamos piezas con historia y alma para habitar sus espacios: arte, textiles, antigüedades y diseño contemporáneo.',
-    detalle: ['Sourcing internacional', 'Arte contemporáneo', 'Antigüedades & vintage', 'Arte popular mexicano'],
+    nombre: 'Cojinería',
+    descripcion: 'Formatos, texturas y terminaciones que cambian el ritmo de toda la cama.',
+    detalle: ['Lino', 'Texturas', 'Pestañas', 'Vivos', 'Borlas'],
   },
   {
     numero: '003',
-    nombre: 'Consultoría de Estilo',
-    descripcion: 'Para quienes desean refinar un espacio existente. Sesiones de diagnóstico con recomendaciones precisas y alcanzables.',
-    detalle: ['Diagnóstico espacial', 'Plan de color & materiales', 'Edición de piezas', 'Shopping guidance'],
+    nombre: 'Respaldos',
+    descripcion: 'La pieza que define presencia, proporción y carácter en el dormitorio.',
+    detalle: ['A medida', 'Fundas removibles', 'Lino'],
   },
   {
     numero: '004',
-    nombre: 'Proyectos Corporativos',
-    descripcion: 'Oficinas, restaurantes y espacios de hospitalidad que comunican valores desde su primera percepción.',
-    detalle: ['Identidad espacial', 'Señalética & experiencia', 'Arte corporativo', 'Mantenimiento de colección'],
+    nombre: 'Pieceras & detalles',
+    descripcion: 'Las últimas capas que terminan de equilibrar la composición.',
+    detalle: ['Pieceras', 'Faldones', 'Detalles textiles'],
   },
 ]
 
@@ -100,11 +100,30 @@ export function Servicios() {
                 marginTop: '1.5rem',
               }}
             >
-              Servicios
+              Piezas
               <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>a medida</em>
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>hechas para tu cama</em>
             </h2>
           </div>
+
+          <p
+            style={{
+              fontSize: '0.8125rem',
+              color: 'var(--obsidian)',
+              lineHeight: 1.8,
+              maxWidth: '34ch',
+              textAlign: 'right',
+              fontWeight: 400,
+              letterSpacing: '0.03em',
+              textShadow: '0 1px 16px rgba(245,240,232,0.85), 0 1px 3px rgba(245,240,232,0.9)',
+            }}
+          >
+            No hacemos simplemente ropa de cama.{' '}
+            <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>
+              Creamos piezas textiles pensadas para convivir entre sí
+            </em>
+            , respetar las proporciones del espacio y transformar la manera en que se siente un dormitorio.
+          </p>
         </div>
 
         {/* Grid de servicios */}

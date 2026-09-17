@@ -118,11 +118,7 @@ export function Servicios() {
               textShadow: '0 1px 16px rgba(245,240,232,0.85), 0 1px 3px rgba(245,240,232,0.9)',
             }}
           >
-            No hacemos simplemente ropa de cama.{' '}
-            <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>
-              Creamos piezas textiles pensadas para convivir entre sí
-            </em>
-            , respetar las proporciones del espacio y transformar la manera en que se siente un dormitorio.
+            No hacemos simplemente ropa de cama. Creamos piezas textiles pensadas para convivir entre sí, respetar las proporciones del espacio y transformar la manera en que se siente un dormitorio.
           </p>
         </div>
 
@@ -136,6 +132,7 @@ export function Servicios() {
           {servicios.map((s, i) => (
             <motion.div
               key={s.numero}
+              className="servicio-card"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -163,6 +160,7 @@ export function Servicios() {
               {/* Número fantasma decorativo — editorial */}
               <span
                 aria-hidden="true"
+                className="servicio-card-numero"
                 style={{
                   position: 'absolute',
                   top: 'clamp(0.75rem, 1.5vw, 1.25rem)',

@@ -1,6 +1,20 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { SectionLabel } from '../components/ui/SectionLabel'
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== 'undefined' && window.innerWidth >= 1024
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return isDesktop
+}
 
 const container: Variants = {
   hidden: {},
@@ -23,6 +37,7 @@ const fadeIn: Variants = {
 }
 
 export function Hero() {
+  const isDesktop = useIsDesktop()
   return (
     <section
       id="inicio"
@@ -63,7 +78,7 @@ export function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center',
+            objectPosition: '10% center',
           }}
         />
       </motion.div>
@@ -95,25 +110,28 @@ export function Hero() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: 'clamp(3rem, 8vw, 8rem) clamp(2rem, 7vw, 9rem)',
+          padding: isDesktop
+            ? 'clamp(3rem, 8vw, 8rem) clamp(2rem, 7vw, 9rem)'
+            : 'clamp(2rem, 6vw, 3rem) clamp(1.25rem, 5vw, 2rem)',
           minHeight: '100svh',
+          ...(isDesktop ? {} : { width: '58%', boxSizing: 'border-box' as const }),
         }}
       >
         <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
-          <motion.div variants={fadeIn} style={{ marginBottom: '4rem' }}>
-            <SectionLabel text="Lino · fibras naturales · confección artesanal" />
+          <motion.div variants={fadeIn} style={{ marginBottom: isDesktop ? '4rem' : '1.75rem' }}>
+            <SectionLabel text="Home" />
           </motion.div>
 
           <motion.div variants={fadeUp}>
             <h1
               className="editorial"
               style={{
-                fontSize: 'clamp(4rem, 10vw, 10.5rem)',
+                fontSize: isDesktop ? 'clamp(4.9rem, 10vw, 11.4rem)' : 'clamp(3.4rem, 9vw, 4.4rem)',
                 fontWeight: 300,
-                lineHeight: 0.9,
+                lineHeight: 0.95,
                 color: 'var(--obsidian)',
                 letterSpacing: '-0.02em',
-                maxWidth: '14ch',
+                maxWidth: isDesktop ? '14ch' : 'none',
               }}
             >
               El arte
@@ -127,10 +145,10 @@ export function Hero() {
           <motion.div
             variants={fadeUp}
             style={{
-              marginTop: '3rem',
+              marginTop: isDesktop ? '3rem' : '1.5rem',
               display: 'flex',
               alignItems: 'flex-start',
-              gap: '3rem',
+              gap: isDesktop ? '3rem' : '1.25rem',
               flexWrap: 'wrap',
             }}
           >
@@ -138,10 +156,10 @@ export function Hero() {
               style={{
                 fontFamily: 'Raleway, sans-serif',
                 fontWeight: 300,
-                fontSize: '0.9rem',
-                lineHeight: 1.9,
+                fontSize: isDesktop ? '0.9rem' : '0.75rem',
+                lineHeight: isDesktop ? 1.9 : 1.7,
                 color: 'var(--ash)',
-                maxWidth: '36ch',
+                maxWidth: isDesktop ? '36ch' : 'none',
                 letterSpacing: '0.04em',
               }}
             >
@@ -156,15 +174,15 @@ export function Hero() {
               style={{
                 fontFamily: 'Raleway, sans-serif',
                 fontWeight: 300,
-                fontSize: '0.6875rem',
-                letterSpacing: '0.28em',
+                fontSize: isDesktop ? '0.6875rem' : '0.625rem',
+                letterSpacing: isDesktop ? '0.28em' : '0.16em',
                 textTransform: 'uppercase',
                 color: 'var(--graphite)',
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                alignSelf: 'flex-end',
+                alignSelf: isDesktop ? 'flex-end' : 'flex-start',
                 paddingBottom: '0.25rem',
                 borderBottom: '1px solid var(--dune)',
               }}
@@ -173,63 +191,6 @@ export function Hero() {
             </motion.a>
           </motion.div>
         </div>
-
-        {/* Número editorial */}
-        <motion.span
-          variants={fadeIn}
-          className="editorial"
-          style={{
-            position: 'absolute',
-            right: 'clamp(2rem, 4vw, 5rem)',
-            bottom: '4rem',
-            fontSize: '7rem',
-            fontWeight: 300,
-            color: 'transparent',
-            WebkitTextStroke: '1px var(--dune)',
-            letterSpacing: '-0.04em',
-            lineHeight: 1,
-            userSelect: 'none',
-          }}
-        >
-          01
-        </motion.span>
-
-        {/* Scroll hint */}
-        <motion.div
-          variants={fadeIn}
-          style={{
-            position: 'absolute',
-            bottom: '4rem',
-            left: 'clamp(2rem, 7vw, 9rem)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-          }}
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              width: '1px',
-              height: '48px',
-              background: 'linear-gradient(to bottom, var(--gold), transparent)',
-            }}
-          />
-          <span
-            style={{
-              fontFamily: 'Raleway, sans-serif',
-              fontWeight: 300,
-              fontSize: '0.5625rem',
-              letterSpacing: '0.25em',
-              color: 'var(--ash)',
-              textTransform: 'uppercase',
-              writingMode: 'vertical-rl',
-              transform: 'rotate(180deg)',
-            }}
-          >
-            Scroll
-          </span>
-        </motion.div>
       </motion.div>
     </section>
   )

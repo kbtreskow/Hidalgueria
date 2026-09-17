@@ -103,9 +103,9 @@ export function Proceso() {
                 className="grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_1fr]"
                 style={{
                   gap: '2.5rem',
-                  paddingBottom: '3.5rem',
+                  paddingBottom: 'clamp(1.25rem, 5vw, 3.5rem)',
                   borderBottom: i < etapas.length - 1 ? '1px solid var(--sand)' : 'none',
-                  marginBottom: i < etapas.length - 1 ? '3.5rem' : 0,
+                  marginBottom: i < etapas.length - 1 ? 'clamp(1.25rem, 5vw, 3.5rem)' : 0,
                   position: 'relative',
                 }}
               >

@@ -442,7 +442,8 @@ export function Proyectos() {
             >
               Espacios que
               <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>hablan de quien los <strong style={{ fontWeight: 700 }}>habita</strong></em>
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>hablan de quien los </em>
+              <em style={{ fontStyle: 'italic', color: 'var(--obsidian)' }}>habita</em>
             </h2>
           </div>
 
@@ -452,7 +453,7 @@ export function Proyectos() {
               color: 'var(--ash)',
               lineHeight: 1.8,
               maxWidth: '28ch',
-              textAlign: 'right',
+              textAlign: 'left',
               fontWeight: 300,
               letterSpacing: '0.03em',
             }}

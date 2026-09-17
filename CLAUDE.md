@@ -14,14 +14,14 @@ src/
 │   ├── ui/             # Atoms: CustomCursor, GrainOverlay, ScrollProgress, SectionLabel, HamburgerMenu
 │   └── layout/         # Footer
 ├── hooks/              # useScrollProgress, useInView
-├── sections/           # 7 secciones de la landing
+├── sections/           # 7 secciones de la landing (Productos oculta temporalmente, ver nota abajo)
 │   ├── Hero.tsx        # Entrada cinemática full-screen
 │   ├── Proyectos.tsx   # Carousel de 16 proyectos — 70vw móvil / 58vw desktop, hook useCardWidth()
 │   ├── Historia.tsx    # Filosofía de la marca (fondo oscuro)
 │   ├── Servicios.tsx   # Grid 2×2 de servicios — tarjetas glassmorphism (backdrop-filter blur) sobre video de fondo
 │   ├── Proceso.tsx     # Timeline de 5 etapas (layout sticky)
-│   ├── Productos.tsx   # Colección "Materia Prima" — 4 filas alternadas imagen/texto (fondo obsidian); panel imagen contiene ImageCarousel (15 imgs, crossfade, auto-avance 3.5s, drag/swipe)
-│   └── Consultas.tsx   # Contacto vía Instagram y WhatsApp
+│   ├── Productos.tsx   # [OCULTA] Colección "Materia Prima" — 4 filas alternadas imagen/texto (fondo obsidian); panel imagen contiene ImageCarousel (15 imgs, crossfade, auto-avance 3.5s, drag/swipe)
+│   └── Consultas.tsx   # CTA final — fondo obsidian (contraste con Proceso, claro), centrada: label + título editorial + texto + botón decorativo "Descubre nuestras camas" (sin enlaces de contacto)
 ├── App.tsx             # Orquestador — sin navbar, scroll puro
 ├── main.tsx
 └── index.css           # Variables CSS, tipografía global, cursor personalizado
@@ -40,6 +40,7 @@ src/
 | `--gold-light` | `#D4B07A` | Variante clara del oro  |
 
 ## Decisiones de diseño
+- **Sección Productos oculta temporalmente** — `<Productos />` y su import comentados en `App.tsx` (no eliminados); entrada del menú comentada en `HamburgerMenu.tsx` con la numeración de "Consultas" ajustada a `06`. Para reactivar: descomentar ambos y restaurar la numeración `06`/`07`. `Productos.tsx` en sí sigue intacto.
 - **Sin navbar fija** — navegación principal por scroll; menú hamburguesa (fixed, top-right) como acceso directo a secciones
 - Cursor personalizado (ring dorado + punto interior)
 - Barra de progreso de scroll (1px dorada, fija arriba)
@@ -53,7 +54,7 @@ src/
 - **Hover en Productos** — panel imagen: `motion.div` con `whileHover="hovered"` propaga estado a `motion.div` wrapper de imágenes con `variants={{ hovered: { scale: 1.07 } }}`. Panel texto: `motion.div` con `whileHover={{ scale: 1.025 }}` y `transformOrigin` dinámico (opuesto a la imagen).
 - **Estructura de Proyectos.tsx** — el `<section>` contiene solo el header (título + descripción); el carousel vive en un `motion.div` hermano fuera del `<section>`. El padding vertical inferior va en ese `motion.div` (`paddingBottom: 'clamp(6rem, 12vw, 14rem)'`), no en la sección.
 - `overflow-x: clip` en `html` y `body` (no `hidden`) — `hidden` crea scroll container y rompe `position: sticky`
-- Contacto: solo Instagram y WhatsApp — sin formularios
+- **Consultas.tsx** — ya no es la sección de contacto (se quitaron los enlaces de Instagram/WhatsApp). Es un CTA final oscuro (`var(--obsidian)`, contraste deliberado contra Proceso que es clara), contenido centrado sin grid: label pequeño dorado, título editorial con cierre en cursiva dorada, párrafo corto y botón decorativo "Descubre nuestras camas" (`<button>`, sin `href`/destino aún — pendiente de definir)
 - Tarjetas Servicios: glassmorphism — `backdrop-filter: blur(22px)`, fondo `rgba(245,240,232,0.42)`, sin bordes, `borderRadius: 16px`; texto descripción en `var(--graphite)` (no `--ash`, contraste insuficiente sobre glass claro); separador en `rgba(184,149,90,0.35)` (dorado sutil); no usar `inset` box-shadow junto con borders (crea artefacto de línea blanca)
 - **Patrón de alineación de secciones** — el padding horizontal va en el `<section>` (o contenedor raíz), y el `maxWidth: 1440px` + `margin: 0 auto` va en un `<div>` interior separado. NO juntar ambos en el mismo elemento: eso desalinea los títulos en pantallas anchas (>1440px) porque el centering se suma al padding en lugar de estar dentro de él. Patrón correcto:
   ```

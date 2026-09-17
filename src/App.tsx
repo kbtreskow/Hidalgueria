@@ -8,7 +8,7 @@ import { Proyectos } from './sections/Proyectos'
 import { Historia } from './sections/Historia'
 import { Servicios } from './sections/Servicios'
 import { Proceso } from './sections/Proceso'
-import { Productos } from './sections/Productos'
+// import { Productos } from './sections/Productos' // oculto temporalmente
 import { Consultas } from './sections/Consultas'
   
 export default function App() {
@@ -27,7 +27,8 @@ export default function App() {
         <Historia />
         <Servicios />
         <Proceso />
-        <Productos />
+        {/* Productos oculto temporalmente — ver CLAUDE.md / pedir a Kevin antes de reactivar */}
+        {/* <Productos /> */}
         <Consultas />
       </main>
 

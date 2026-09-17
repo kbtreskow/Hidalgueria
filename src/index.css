@@ -74,6 +74,17 @@ html, body {
   cursor: none;
 }
 
+/* Servicios — tarjetas más compactas en móvil */
+@media (max-width: 640px) {
+  .servicio-card {
+    padding: 1.5rem !important;
+    gap: 1.1rem !important;
+  }
+  .servicio-card-numero {
+    font-size: 3.75rem !important;
+  }
+}
+
 /* Carousel de productos — barra de progreso */
 @keyframes carouselFill {
   from { transform: scaleX(0); }

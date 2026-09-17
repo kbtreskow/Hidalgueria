@@ -8,8 +8,8 @@ const LINKS = [
   { href: '#historia',     label: 'Historia',    num: '03' },
   { href: '#servicios',    label: 'Servicios',   num: '04' },
   { href: '#proceso',      label: 'Proceso',     num: '05' },
-  { href: '#productos',    label: 'Productos',   num: '06' },
-  { href: '#consultas',    label: 'Consultas',   num: '07' },
+  // { href: '#productos', label: 'Productos',   num: '06' }, // oculto temporalmente
+  { href: '#consultas',    label: 'Consultas',   num: '06' },
 ]
 
 const overlay: Variants = {

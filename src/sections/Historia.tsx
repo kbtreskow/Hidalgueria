@@ -134,9 +134,7 @@ export function Historia() {
             >
               La Hidalguería nace del amor por los textiles, las fibras naturales y el valor de aquello que ha sido hecho con las manos.
               <br /><br />
-              Entendemos la cama como un lugar íntimo: una composición de texturas, volúmenes y proporciones capaz de transformar la forma en que se siente un dormitorio.
-              <br /><br />
-              No buscamos la perfección de lo industrial. Buscamos carácter, equilibrio y la autenticidad de una pieza bien hecha.
+              Una forma de entender la ropa de cama donde la belleza comienza en la materia y cobra vida a través del oficio.
             </p>
           </motion.div>
 

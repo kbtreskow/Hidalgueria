@@ -1,7 +1,7 @@
 # Hidalguería — Landing Page de Alta Costura
 
 Landing page editorial para estudio de interiorismo de lujo. Stack moderno con foco en experiencia visual de alta gama.
-
+#nueva idea
 ## Stack
 
 - React 19 + TypeScript (strict) + Vite 8

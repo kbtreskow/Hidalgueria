@@ -16,8 +16,8 @@ export function SectionLabel({ text, align = 'left' }: SectionLabelProps) {
       <span
         style={{
           fontFamily: 'Raleway, sans-serif',
-          fontWeight: 300,
-          fontSize: '0.625rem',
+          fontWeight: 500,
+          fontSize: '0.6875rem',
           letterSpacing: '0.25em',
           color: 'var(--ash)',
           textTransform: 'uppercase',
